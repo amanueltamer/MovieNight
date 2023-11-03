@@ -1,13 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: black;
+  --mainTheme-color: #1E3E5C;
+  /* --mainTheme-color: #83781B; */
+  /* --mainTheme-color: #04724D; */
+  /* --mainTheme-color: #A72608; */
+  --secondTheme-color: #1D2731;
+  --thirdTheme-color: #93A3B1;
+  --fourthTheme-color: #D8DBE2;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  /* scrollbar-width: none; Firefox */
+  -ms-overflow-style: none; /* Internet Explorer and Microsoft Edge */
+}
+
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Hide the thumb */
+}
+
+body::-webkit-scrollbar-track {
+  background: transparent; /* Hide the track */
+}
+
+/* Hide scrollbar for body on all devices */
+body {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: transparent transparent; /* Firefox */
+
+  /* Hide scrollbar for Webkit browsers (Chrome, Safari) */
+  -webkit-overflow-scrolling: touch;
+  overflow: auto;
 }
