@@ -86,14 +86,14 @@ const People = () => {
                                     navigate(
                                       `/movie/${
                                         knownFor.id
-                                      }/${encodeURIComponent(knownFor.title)}`
+                                      }/${knownFor.title}`
                                     );
                                   } else if (knownFor.name) {
                                     // Use name as a route parameter
                                     navigate(
                                       `/show/${
                                         knownFor.id
-                                      }/${encodeURIComponent(knownFor.name)}`
+                                      }/${knownFor.name}`
                                     );
                                   }
                                 }}
