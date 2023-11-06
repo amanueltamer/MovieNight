@@ -73,11 +73,13 @@ const Search = () => {
                         alt={movie.name}
                         onClick={() => {
                           if (!movie.profile_path) {
-                            navigate(
-                              `/movie/${movie.id}/${encodeURIComponent(
-                                movie.title
-                              )}/${encodeURIComponent(movie.name)}`
-                            );
+                            if (movie.title) {
+                          // Use title as a route parameter
+                          navigate(`/movie/${movie.id}/${movie.title}`);
+                        } else if (movie.name) {
+                          // Use name as a route parameter
+                          navigate(`/show/${movie.id}/${movie.name}`);
+                        }
                           }
                         }}
                       />
@@ -99,14 +101,12 @@ const Search = () => {
                                 src={IMG_API + knownFor.poster_path}
                                 alt={knownFor.name}
                                 onClick={() => {
-                                  const url = `/movie/${knownFor.id}`;
-                                
                                   if (knownFor.title) {
                                     // Use title as a route parameter
-                                    navigate(`/movie/${knownFor.id}/${encodeURIComponent(knownFor.title)}`);
+                                    navigate(`/movie/${knownFor.id}/${knownFor.title}`);
                                   } else if (knownFor.name) {
                                     // Use name as a route parameter
-                                    navigate(`/show/${knownFor.id}/${encodeURIComponent(knownFor.name)}`);
+                                    navigate(`/show/${knownFor.id}/${knownFor.name}`);
                                   }
                                 }}
                               />
