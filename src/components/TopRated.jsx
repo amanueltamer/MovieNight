@@ -60,10 +60,10 @@ const TopRated = () => {
                     
                     if (movie.title) {
                       // Use title as a route parameter
-                      navigate(`/movie/${movie.id}/${encodeURIComponent(movie.title)}`);
+                      navigate(`/movie/${movie.id}/${movie.title}`);
                     } else if (movie.name) {
                       // Use name as a route parameter
-                      navigate(`/show/${movie.id}/${encodeURIComponent(movie.name)}`);
+                      navigate(`/show/${movie.id}/${movie.name}`);
                     }
                   }}/>
                     <p className="topRated__upcomingRating">
