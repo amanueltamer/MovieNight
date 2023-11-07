@@ -183,8 +183,7 @@ p {
 
 .movieDetails__cardImgBlank {
     width: 100%;
-    height: 75%;
-    min-height: 355px;
+    padding-bottom: 150%;
     border-radius: 6px;
     /* cursor: pointer; */
     background-color: var(--secondTheme-color);
@@ -264,20 +263,9 @@ p {
     padding-right: 24px;
     padding-left: 24px;
   }
-
-  .movieDetails__cardImgBlank {
-    width: 100%;
-    height: 67%;
-}
 }
 
 @media (max-width: 767px) {
-
-  .movieDetails__cardImgBlank {
-    width: 100%;
-    height: 80%;
-}
-
   .movieDetails__container {
     padding-right: 48px;
     padding-left: 48px;
@@ -384,20 +372,10 @@ p {
     padding-right: 12px;
     padding-left: 12px;
   }
-
-  .movieDetails__cardImgBlank {
-    width: 100%;
-    height: 78%;
-}
 }
 
 @media (max-width: 425px) {
   .movieDetails__title > h3 {
     font-size: 40px;
   }
-
-  .movieDetails__cardImgBlank {
-    width: 100%;
-    height: 70%;
-}
 }
