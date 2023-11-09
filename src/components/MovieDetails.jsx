@@ -259,9 +259,14 @@ export default function MovieDetails() {
             <div className="movieDetails__information">
               <h2>GENRES</h2>
               <div className="movieDetails__informationGenreBoxes">
-                {title !== "undefined" &&
-                  (movieDetails || tvDetails) &&
-                  (movieDetails?.genres || tvDetails?.genres || []).map(
+                {nameSet === tvDetails?.name && titleSet === movieDetails?.title ?
+                  (movieDetails?.genres || []).map(
+                    (genre) => (
+                      <p className="movieDetails__genreBox" key={genre.id}>
+                        {genre.name}
+                      </p>
+                    )
+                  ) : (tvDetails?.genres || []).map(
                     (genre) => (
                       <p className="movieDetails__genreBox" key={genre.id}>
                         {genre.name}
