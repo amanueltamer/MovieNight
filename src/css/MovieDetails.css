@@ -195,8 +195,9 @@ p {
   flex-wrap: wrap;
   flex-direction: row;
   margin-bottom: 40px;
-  margin-top: 10px;
+  margin-top: 20px;
   width: 100%;
+  gap: 8px;
 }
 
 .movieDetails__genreBox {
@@ -204,7 +205,6 @@ p {
   border: 0 solid var(--thirdTheme-color);
   border-color: var(--thirdTheme-color);
   border-width: 1px;
-  margin: 4px;
   border-radius: 6px;
   font-weight: 500;
   opacity: 1;
@@ -239,7 +239,7 @@ p {
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   .movieDetails__container {
     padding-right: 48px;
     padding-left: 48px;
