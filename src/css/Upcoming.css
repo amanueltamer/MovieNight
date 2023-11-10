@@ -153,7 +153,7 @@
       margin-bottom: 40px;
       display: grid;
       grid-template-columns: repeat(4,minmax(0,1fr));
-      gap: 40px; /* Adjust the gap between grid items */
+      gap: 24px; /* Adjust the gap between grid items */
       justify-content: center;
       align-content: flex-start; /* Align items to the top */
     }
