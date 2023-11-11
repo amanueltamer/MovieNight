@@ -188,7 +188,7 @@
       padding: 11.5px !important;
   }
 
-  @media (max-width: 1023px) {
+  @media (max-width: 1024px) {
     .trending__cards {
       grid-template-columns: repeat(4,minmax(0,1fr));
       gap: 24px;
