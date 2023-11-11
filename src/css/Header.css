@@ -136,7 +136,7 @@
   }
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 1024px) {
   .header__subtitleContainer {
     display: none;
   }
@@ -158,7 +158,7 @@
   }
 }
 
-@media (max-width: 1023px) {
+@media (max-width: 1024px) {
   .header {
     padding-top: 8px;
   }
