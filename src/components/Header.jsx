@@ -12,7 +12,7 @@ export default function Header() {
   const [searchValue, setSearchValue] = useState("");
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const isSmallScreen = useMediaQuery("(max-width: 1023px)");
+  const isSmallScreen = useMediaQuery("(max-width: 1024px)");
 
   const goHome = () => {
     navigate("/");
