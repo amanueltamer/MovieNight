@@ -15,7 +15,7 @@ export default function Categories() {
 
   let limitedMovies;
 
-  const isSmallScreen = useMediaQuery("(max-width: 1023px)");
+  const isSmallScreen = useMediaQuery("(max-width: 1024px)");
   const isSmallerScreen = useMediaQuery("(max-width: 768px)");
 
   async function getUpcomingMovies() {
