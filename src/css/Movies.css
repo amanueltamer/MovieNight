@@ -1,12 +1,5 @@
-/* html {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-} */
-
 .movies {
   margin: 0;
-  /* max-width: 1600px; */
   color: var(--fourthTheme-color);
   position: sticky;
   width: 100%;
@@ -31,11 +24,9 @@ h3 {
 
 .movies__container {
   display: flex;
-  /* flex-direction: row; */
   margin-right: 18px;
   margin-left: 50px;
   align-items: center;
-  /* justify-content: center !important; */
   width: 100%;
   max-width: 2000px;
   justify-content: space-between;
@@ -43,7 +34,6 @@ h3 {
 
 .movies__info {
   width: 60%;
-  /* margin-left: 50px; */
 }
 
 .movies__title {
@@ -76,7 +66,6 @@ h3 {
 
 .movies__plot {
   margin-top: 20px;
-  /* width: 400px; */
   font-family: "Roboto", sans-serif;
 }
 
@@ -157,8 +146,6 @@ h3 {
   }
 
   .movies__background {
-    /* padding-top: 170px;
-    padding-bottom: 250px; */
     height: 100%;
   }
 
@@ -168,11 +155,8 @@ h3 {
     margin-right: 18px;
     margin-left: 50px;
     align-items: center !important;
-    /* justify-content: space-between !important; */
     width: 100% !important;
     justify-content: space-between;
-    /* margin-top: 112px; */
-    /* margin-bottom: 112px; */
     margin-right: 0px;
     margin-left: 0px;
     padding-left: 12px;
