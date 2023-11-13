@@ -60,10 +60,7 @@
 }
 
 .topRated__card {
-  /* max-width: 213px; */
-  /* width: 20%; */
   overflow: hidden;
-  /* margin-right: 39px; */
   transition: transform 0.2s ease;
 }
 
@@ -90,17 +87,12 @@
 }
 
 .topRated__cardName {
-  /* margin: 20px 0; */
   margin-top: 20px;
   margin-bottom: 40px;
   font-family: "Roboto", sans-serif;
   color: var(--fourthTheme-color);
   font-size: 16px;
 }
-
-/* .topRated__cardName > h3 {
-        font-weight: 300;
-    } */
 
 .topRated__cardTitle {
   font-size: 18px;
