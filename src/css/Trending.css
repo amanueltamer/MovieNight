@@ -3,8 +3,6 @@
 }
 
 .trending__mainContainer {
-  /* max-width: 1400px; */
-  /* margin: 0px 60px; */
   padding: 0px 48px;
 }
 
@@ -18,14 +16,6 @@
   align-items: center;
   justify-content: space-between;
 }
-
-/* .trending__buttonGroup {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-} */
 
 .trending__movieButton {
   border-radius: 999px;
@@ -80,16 +70,13 @@
   margin-bottom: 40px;
   display: grid;
   grid-template-columns: repeat(5,minmax(0,1fr));
-  gap: 40px; /* Adjust the gap between grid items */
+  gap: 40px;
   justify-content: center;
   align-content: flex-start; 
 }
 
 .trending__card {
-  /* max-width: 213px; */
-  /* width: 20%; */
   overflow: hidden;
-  /* margin-right: 39px; */
   transition: transform 0.2s ease;
 }
 
@@ -103,7 +90,6 @@
 
 .trending__cardImg {
   overflow: hidden;
-  /* max-width: 213px; */
   position: relative;
 }
 
@@ -116,17 +102,12 @@
 }
 
 .trending__cardName {
-  /* margin: 20px 0; */
   margin-top: 20px;
   margin-bottom: 40px;
   font-family: "Roboto", sans-serif;
   color: var(--fourthTheme-color);
   font-size: 16px;
 }
-
-/* .trending__cardName > h3 {
-      font-weight: 300;
-  } */
 
 .trending__cardTitle {
   font-size: 18px;
@@ -180,10 +161,6 @@
       color: var(--mainTheme-color) !important;
   }
 
-  /* .trending__buttons {
-      padding-left: 20px;
-  } */
-
   .MuiButtonBase-root {
       padding: 11.5px !important;
   }
@@ -232,7 +209,6 @@
     .trending__buttonGroup {
       display: flex;
       flex-direction: column;
-      /* justify-content: space-between; */
       align-items: center;
       width: 100%;
     }
