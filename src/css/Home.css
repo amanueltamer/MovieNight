@@ -4,8 +4,6 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  /* max-width: 1600px; */
-  /* box-shadow: 0 4px 2px -2px gray; */
 }
 
 .home {
@@ -36,42 +34,3 @@
   font-family: "Roboto", sans-serif;
   font-weight: 700;
 }
-
-/* 
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    
-}
-
-.header__container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 50%;
-}
-
-
-.header__titleContainer {
-    display: flex;
-    align-items: center;
-    width: 50%;
-}
-
-.header__subtitleContainer {
-    display: flex;
-}
-
-.header__title {
-    font-size: 48px;
-}
-
-.header__subtitle {
-    padding-right: 42px;
-    font-size: 24px;
-}
-
-.header__searchContainer {
-    padding-right: 100px;
-} */
