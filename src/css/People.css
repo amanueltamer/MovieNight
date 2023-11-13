@@ -3,9 +3,6 @@
 }
 
 .people__mainContainer {
-  /* max-width: 1400px; */
-  /* margin-left: auto;
-  margin-right: auto; */
   padding: 0px 48px;
 }
 
@@ -31,27 +28,20 @@
   margin-bottom: 40px;
   display: grid;
   grid-template-columns: repeat(5,minmax(0,1fr));
-  gap: 40px; /* Adjust the gap between grid items */
+  gap: 40px;
   justify-content: center;
-  align-content: flex-start; /* Align items to the top */
+  align-content: flex-start;
 }
 
 
 .people__card {
-  /* max-width: 213px; */
-  /* width: 20%; */
   overflow: hidden;
-  /* margin-right: 40px; */
   transition: transform 0.2s ease;
 }
 
 .people__card:hover {
   transform: scale(1.07);
 }
-
-/* .people__card:nth-child(5n) {
-  margin-right: 0;
-} */
 
 .people__cardImg {
   overflow: hidden;
@@ -63,11 +53,9 @@
   width: 100%;
   height: auto;
   border-radius: 6px;
-  /* cursor: pointer; */
 }
 
 .people__cardName {
-  /* margin: 20px 0; */
   margin-top: 20px;
   margin-bottom: 40px;
   font-family: "Roboto", sans-serif;
@@ -125,15 +113,9 @@
 @media (max-width: 1440px) {
   .people__card {
     max-width: 100%;
-    /* width: 20%; */
     overflow: hidden;
-    /* margin-right: 39px; */
     transition: transform 0.2s ease;
   }
-
-   /* .people__card:nth-child(4n) {
-    margin-right: 0px;
-  } */
 
    .people__card:nth-child(5n) {
     margin-right: 0px;
@@ -150,9 +132,9 @@
     margin-bottom: 40px;
     display: grid;
     grid-template-columns: repeat(4,minmax(0,1fr));
-    gap: 24px; /* Adjust the gap between grid items */
+    gap: 24px;
     justify-content: center;
-    align-content: flex-start; /* Align items to the top */
+    align-content: flex-start;
   }
 }
 
@@ -162,9 +144,9 @@
     margin-bottom: 40px;
     display: grid;
     grid-template-columns: repeat(2,minmax(0,1fr));
-    gap: 24px; /* Adjust the gap between grid items */
+    gap: 24px;
     justify-content: center;
-    align-content: flex-start; /* Align items to the top */
+    align-content: flex-start;
   }
 }
 
@@ -174,9 +156,9 @@
     margin-bottom: 40px;
     display: grid;
     grid-template-columns: repeat(2,minmax(0,1fr));
-    gap: 12px; /* Adjust the gap between grid items */
+    gap: 12px;
     justify-content: center;
-    align-content: flex-start; /* Align items to the top */
+    align-content: flex-start;
   }
 }
 
