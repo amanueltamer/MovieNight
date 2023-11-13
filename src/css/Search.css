@@ -28,22 +28,15 @@
   margin-bottom: 40px;
   display: grid;
   grid-template-columns: repeat(5,minmax(0,1fr));
-  gap: 40px; /* Adjust the gap between grid items */
+  gap: 40px;
   justify-content: center;
-  align-content: flex-start; /* Align items to the top */
+  align-content: flex-start;
 }
 
 .search__card {
-  /* max-width: 213px;
-  width: 20%; */
   overflow: hidden;
-  /* margin-right: 39px; */
   transition: transform 0.2s ease;
 }
-
-/* .search__card:hover {
-  transform: scale(1.07);
-} */
 
 .search__card:nth-child(5n) {
   margin-right: 0;
@@ -64,7 +57,6 @@
 
 .search__cardImg:hover .search__knownFor {
     opacity: 1;
-    /* pointer-events: auto; */
 }
 
 .search__knownFor > img:hover {
@@ -72,7 +64,6 @@
   }
 
 .search__cardName {
-  /* margin: 20px 0; */
   margin-top: 20px;
   margin-bottom: 40px;
   font-family: "Roboto", sans-serif;
@@ -143,11 +134,9 @@
 }
 
 .search__knownFor {
-  width: 100%; /* Set the width to match the container */
-  height: 100%; /* Set the height to match the container */
-  /* display: none; */
+  width: 100%;
+  height: 100%;
   opacity: 0;
-  /* pointer-events: none; */
   transition: opacity 0.3s ease;
 }
 
@@ -155,41 +144,41 @@
     position: absolute;
     border-radius: 6px;
     cursor: pointer;
-    transition: transform 0.2s ease; /* Add transition here */
+    transition: transform 0.2s ease;
   }
 
 /* Position the three images diagonally from left to right */
 .search__knownFor > img:nth-child(1) {
-  bottom: 0; /* Align the first image to the bottom */
+  bottom: 0;
   left: 0;
   transform: translate(
     0,
     0
-  ); /* No diagonal translation needed for the first image */
+  );
   max-width: 34%;
     width: 34%;
     height: auto;
 }
 
 .search__knownFor > img:nth-child(2) {
-  bottom: 0; /* Align the second image to the bottom */
-  left: 34%; /* Position it to the right of the first image */
+  bottom: 0;
+  left: 34%;
   transform: translate(
     0,
     0
-  ); /* No diagonal translation needed for the second image */
+  );
   max-width: 34%;
     width: 34%;
     height: auto;
 }
 
 .search__knownFor > img:nth-child(3) {
-  bottom: 0; /* Align the third image to the bottom */
-  left: 67%; /* Position it to the right of the second image */
+  bottom: 0;
+  left: 67%;
   transform: translate(
     0,
     0
-  ); /* No diagonal translation needed for the third image */
+  );
   max-width: 34%;
   width: 34%;
   height: auto;
@@ -205,9 +194,9 @@
     margin-bottom: 40px;
     display: grid;
     grid-template-columns: repeat(4,minmax(0,1fr));
-    gap: 24px; /* Adjust the gap between grid items */
+    gap: 24px;
     justify-content: center;
-    align-content: flex-start; /* Align items to the top */
+    align-content: flex-start;
   }
 }
 
@@ -217,9 +206,9 @@
     margin-bottom: 40px;
     display: grid;
     grid-template-columns: repeat(2,minmax(0,1fr));
-    gap: 24px; /* Adjust the gap between grid items */
+    gap: 24px;
     justify-content: center;
-    align-content: flex-start; /* Align items to the top */
+    align-content: flex-start;
   }
 
   .search__mainContainer {
