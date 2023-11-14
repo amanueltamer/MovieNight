@@ -8,7 +8,6 @@ import "../css/Upcoming.css";
 const Upcoming = () => {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
-  const [totalPages, setTotalPages] = useState(0);
   const [subset, setSubset] = useState([]);
   const navigate = useNavigate();
 
@@ -25,7 +24,6 @@ const Upcoming = () => {
     const dataExtract = data.results;
 
     setData(dataExtract);
-    setTotalPages(data.total_pages);
     setSubset(dataExtract.slice(0, itemsPerPage));
   }
 
@@ -56,16 +54,19 @@ const Upcoming = () => {
               subset.map((movie) => (
                 <div className="upcoming__card" key={movie.id}>
                   <div className="upcoming__cardImg">
-                    <img src={IMG_API + movie.poster_path} alt={movie.name} onClick={() => {
-                    
-                    if (movie.title) {
-                      // Use title as a route parameter
-                      navigate(`/movie/${movie.id}/${movie.title}`);
-                    } else if (movie.name) {
-                      // Use name as a route parameter
-                      navigate(`/show/${movie.id}/${movie.name}`);
-                    }
-                  }}/>
+                    <img
+                      src={IMG_API + movie.poster_path}
+                      alt={movie.name}
+                      onClick={() => {
+                        if (movie.title) {
+                          // Use title as a route parameter
+                          navigate(`/movie/${movie.id}/${movie.title}`);
+                        } else if (movie.name) {
+                          // Use name as a route parameter
+                          navigate(`/show/${movie.id}/${movie.name}`);
+                        }
+                      }}
+                    />
                     <p className="upcoming__Rating">
                       <Star />
                       <span className="upcoming__Rate">
