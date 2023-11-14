@@ -8,7 +8,6 @@ import "../css/Search.css";
 const Search = () => {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
-  const [totalPages, setTotalPages] = useState(0);
   const [subset, setSubset] = useState([]);
   const { title, name } = useParams();
   const navigate = useNavigate();
@@ -25,13 +24,11 @@ const Search = () => {
       }&page=${pageNumber}&media_type=person`
     );
 
-    // Filter out results that are not movies or TV shows
     const filteredResults = data.results;
 
     console.log(filteredResults);
 
     setData(filteredResults);
-    setTotalPages(data.total_pages);
     setSubset(filteredResults.slice(0, itemsPerPage));
   }
 
@@ -45,13 +42,10 @@ const Search = () => {
     const newStartIndex = selectedPage.selected * itemsPerPage;
     const newEndIndex = newStartIndex + itemsPerPage;
 
-    // Adjust the subset to include items from newStartIndex to newEndIndex
     const newSubset = data.slice(newStartIndex, newEndIndex);
 
     setSubset(newSubset);
   };
-
-  console.log(subset);
 
   return (
     <div className="search">
@@ -74,12 +68,10 @@ const Search = () => {
                         onClick={() => {
                           if (!movie.profile_path) {
                             if (movie.title) {
-                          // Use title as a route parameter
-                          navigate(`/movie/${movie.id}/${movie.title}`);
-                        } else if (movie.name) {
-                          // Use name as a route parameter
-                          navigate(`/show/${movie.id}/${movie.name}`);
-                        }
+                              navigate(`/movie/${movie.id}/${movie.title}`);
+                            } else if (movie.name) {
+                              navigate(`/show/${movie.id}/${movie.name}`);
+                            }
                           }
                         }}
                       />
@@ -102,11 +94,13 @@ const Search = () => {
                                 alt={knownFor.name}
                                 onClick={() => {
                                   if (knownFor.title) {
-                                    // Use title as a route parameter
-                                    navigate(`/movie/${knownFor.id}/${knownFor.title}`);
+                                    navigate(
+                                      `/movie/${knownFor.id}/${knownFor.title}`
+                                    );
                                   } else if (knownFor.name) {
-                                    // Use name as a route parameter
-                                    navigate(`/show/${knownFor.id}/${knownFor.name}`);
+                                    navigate(
+                                      `/show/${knownFor.id}/${knownFor.name}`
+                                    );
                                   }
                                 }}
                               />
@@ -144,7 +138,7 @@ const Search = () => {
           </div>
 
           <ReactPaginate
-            pageCount={totalPages}
+            pageCount="500"
             onPageChange={handlePageChange}
             forcePage={currentPage}
             previousLabel="Prev"
