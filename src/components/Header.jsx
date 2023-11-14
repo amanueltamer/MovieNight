@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "../css/Header.css";
-import SearchIcon from "@mui/icons-material/Search";
 import { useNavigate } from "react-router-dom";
 import Search from "@mui/icons-material/Search";
-import { Button, Drawer, List, ListItem, ListItemText, Menu, SpeedDial, SpeedDialAction, useMediaQuery } from "@mui/material";
-import { Home, Person, Star, TrendingUp } from "@mui/icons-material";
-import MenuIcon from '@mui/icons-material/Menu';
+import {
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  useMediaQuery,
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
 
 export default function Header() {
   const navigate = useNavigate();
@@ -22,10 +26,6 @@ export default function Header() {
     navigate("/trending");
   };
 
-  const goMovies = () => {
-    navigate("/resultspage");
-  };
-
   const goPeople = () => {
     navigate("/people");
   };
@@ -34,22 +34,16 @@ export default function Header() {
     navigate("/discover");
   };
 
-  const handleSearch = (e) => {
-    // e.stopPropagation()
-    setDrawerOpen(false)
+  const handleSearch = () => {
+    setDrawerOpen(false);
     if (searchValue !== "") {
       const query = encodeURIComponent(searchValue);
       navigate(`/search/${query}/${query}`);
     }
-    // Assuming searchValue contains the query
-    // const query = encodeURIComponent(searchValue);
-  
-    // Construct the URL using the /movie/:id/:title/:name pattern
-    // navigate(`/search/${query}/${query}`);
   };
 
   const handleKeyPress = (e) => {
-    if ((searchValue !== "") && (e.key === "Enter")) {
+    if (searchValue !== "" && e.key === "Enter") {
       handleSearch();
     }
   };
@@ -58,22 +52,13 @@ export default function Header() {
     setDrawerOpen(!drawerOpen);
   };
 
-  useEffect(() => {
-    // handleKeyPress();
-  }, [isSmallScreen])
-
-  console.log(searchValue);
+  useEffect(() => {}, [isSmallScreen]);
 
   return (
     <div className="header">
       <header className="main__header">
         <div className="header__container">
-          {isSmallScreen ? (
-            <MenuIcon onClick={toggleDrawer}>
-          </MenuIcon>
-          ) : (
-            <></>
-          )}
+          {isSmallScreen ? <MenuIcon onClick={toggleDrawer}></MenuIcon> : <></>}
           <Drawer
             anchor="left"
             open={drawerOpen}
@@ -126,8 +111,6 @@ export default function Header() {
             <h3 className="header__subtitle" onClick={goDiscover}>
               Discover
             </h3>
-            {/* <h3 className="header__subtitle" onClick={goMovies}>Movies</h3>
-            <h3 className="header__subtitle">Shows</h3> */}
             <h3 className="header__subtitle" onClick={goPeople}>
               People
             </h3>
@@ -144,10 +127,6 @@ export default function Header() {
             />
             <Search className="header__searchButton" onClick={handleSearch} />
           </div>
-
-          {/* <Button className="header__button">
-        </Button> */}
-          {/* <h3 className="header__login">Login</h3> */}
         </div>
       </header>
     </div>
