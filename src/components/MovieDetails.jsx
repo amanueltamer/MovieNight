@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
-import { Button } from "@mui/material";
+import { useParams } from "react-router-dom";
 import { Star } from "@mui/icons-material";
 import "../css/MovieDetails.css";
 
@@ -13,7 +12,6 @@ export default function MovieDetails() {
   const [castTvDetails, setCastTvDetails] = useState(null);
   const [titleSet, setTitleSet] = useState("");
   const [nameSet, setNameSet] = useState("");
-  const navigate = useNavigate();
 
   const IMG_API = "https://image.tmdb.org/t/p/original/";
   const API_KEY = "d6ed228d534be022d42faf1a2d1a9472";
@@ -25,7 +23,6 @@ export default function MovieDetails() {
       const { data } = await axios.get(apiUrl);
       setMovieDetails(data);
     } catch (error) {
-      // Handle the error, e.g., display an error message to the user.
       console.error("Error fetching movie details:", error);
     }
   }
@@ -36,7 +33,6 @@ export default function MovieDetails() {
       const { data } = await axios.get(apiUrl);
       setCastDetails(data.cast.slice(0, 12));
     } catch (error) {
-      // Handle the error, e.g., display an error message to the user.
       console.error("Error fetching cast details:", error);
     }
   }
@@ -47,7 +43,6 @@ export default function MovieDetails() {
       const { data } = await axios.get(apiUrl);
       setTvDetails(data);
     } catch (error) {
-      // Handle the error, e.g., display an error message to the user.
       console.error("Error fetching TV show details:", error);
     }
   }
@@ -58,7 +53,6 @@ export default function MovieDetails() {
       const { data } = await axios.get(apiUrl);
       setCastTvDetails(data.cast.slice(0, 12));
     } catch (error) {
-      // Handle the error, e.g., display an error message to the user.
       console.error("Error fetching TV show cast details:", error);
     }
   }
@@ -71,9 +65,6 @@ export default function MovieDetails() {
     setTitleSet(title);
     setNameSet(name);
   }, [id]);
-
-  console.log(movieDetails);
-  console.log(castDetails);
 
   function formatRuntime(minutes) {
     const hours = Math.floor(minutes / 60);
@@ -91,33 +82,20 @@ export default function MovieDetails() {
   console.log(tvDetails);
   console.log(castTvDetails);
 
-  // console.log(tvDetails?.name);
-  // console.log(movieDetails?.title);
-
-  // console.log(params);
-
   if (!movieDetails && !tvDetails) {
-    // If both movieDetails and tvDetails are falsy, show loading...
     return <div>Loading...</div>;
   } else if (name === undefined && title === undefined) {
-    // If either movieDetails or tvDetails are defined and their names don't match the title, show loading...
     return <div>Loading...</div>;
   }
-
-  // if (titleSet !== movieDetails?.title && movieDetails?.title === "undefined") {
-  //   setTitleSet(tvDetails?.name)
-  // }
 
   if (nameSet !== tvDetails?.name) {
     setNameSet(tvDetails?.name);
   }
 
-  console.log(title);
-  console.log(titleSet);
-  console.log(movieDetails?.title);
-  console.log(name);
-  console.log(nameSet);
-  console.log(tvDetails?.name);
+  const productionCompanies =
+    nameSet === tvDetails?.name && titleSet === movieDetails?.title
+      ? (movieDetails && movieDetails.production_companies) || []
+      : (tvDetails && tvDetails.production_companies) || [];
 
   return (
     <div className="movie__details" key={id}>
@@ -192,7 +170,8 @@ export default function MovieDetails() {
             <div className="movieDetails__cast">
               <h2>THE CAST</h2>
               <div className="movieDetails__castContainer">
-                {nameSet === tvDetails?.name && titleSet === movieDetails?.title ? (
+                {nameSet === tvDetails?.name &&
+                titleSet === movieDetails?.title ? (
                   castDetails && castDetails.length > 0 ? (
                     castDetails.map((cast) => (
                       <div className="movieDetails__card" key={cast.cast_id}>
@@ -259,26 +238,24 @@ export default function MovieDetails() {
             <div className="movieDetails__information">
               <h2>GENRES</h2>
               <div className="movieDetails__informationGenreBoxes">
-                {nameSet === tvDetails?.name && titleSet === movieDetails?.title ?
-                  (movieDetails?.genres || []).map(
-                    (genre) => (
+                {nameSet === tvDetails?.name && titleSet === movieDetails?.title
+                  ? (movieDetails?.genres || []).map((genre) => (
                       <p className="movieDetails__genreBox" key={genre.id}>
                         {genre.name}
                       </p>
-                    )
-                  ) : (tvDetails?.genres || []).map(
-                    (genre) => (
+                    ))
+                  : (tvDetails?.genres || []).map((genre) => (
                       <p className="movieDetails__genreBox" key={genre.id}>
                         {genre.name}
                       </p>
-                    )
-                  )}
+                    ))}
               </div>
 
               <div className="movieDetails__generalInfo">
                 <h2>RELEASE DATE</h2>
                 <p>
-                  {nameSet === tvDetails?.name && titleSet === movieDetails?.title
+                  {nameSet === tvDetails?.name &&
+                  titleSet === movieDetails?.title
                     ? movieDetails && movieDetails.release_date
                     : tvDetails && tvDetails.first_air_date}
                 </p>
@@ -286,12 +263,14 @@ export default function MovieDetails() {
               <div className="movieDetails__generalInfo">
                 <h2>RATING</h2>
                 <p>
-                  {nameSet === tvDetails?.name && titleSet === movieDetails?.title
+                  {nameSet === tvDetails?.name &&
+                  titleSet === movieDetails?.title
                     ? movieDetails && movieDetails.vote_average.toFixed(1)
                     : tvDetails && tvDetails.vote_average.toFixed(1)}
                 </p>
               </div>
-              {nameSet === tvDetails?.name && titleSet === movieDetails?.title ? (
+              {nameSet === tvDetails?.name &&
+              titleSet === movieDetails?.title ? (
                 <div className="movieDetails__generalInfo">
                   <h2>REVENUE</h2>
                   <p>
@@ -311,9 +290,15 @@ export default function MovieDetails() {
                 </div>
               ) : null}
               <div className="movieDetails__generalInfo">
-                <h2>{nameSet === tvDetails?.name && titleSet === movieDetails?.title ? "TAGLINE" : "SEASONS"}</h2>
+                <h2>
+                  {nameSet === tvDetails?.name &&
+                  titleSet === movieDetails?.title
+                    ? "TAGLINE"
+                    : "SEASONS"}
+                </h2>
                 <p>
-                  {nameSet === tvDetails?.name && titleSet === movieDetails?.title
+                  {nameSet === tvDetails?.name &&
+                  titleSet === movieDetails?.title
                     ? movieDetails && movieDetails.tagline
                     : tvDetails && tvDetails.number_of_seasons}
                 </p>
@@ -321,15 +306,22 @@ export default function MovieDetails() {
               <div className="movieDetails__generalInfo">
                 <h2>STATUS</h2>
                 <p>
-                  {nameSet === tvDetails?.name && titleSet === movieDetails?.title
+                  {nameSet === tvDetails?.name &&
+                  titleSet === movieDetails?.title
                     ? movieDetails && movieDetails.status
                     : tvDetails && tvDetails.status}
                 </p>
               </div>
               <div className="movieDetails__generalInfo">
-                <h2>{nameSet === tvDetails?.name && titleSet === movieDetails?.title ? "RUNTIME" : "EPISODE LENGTH"}</h2>
+                <h2>
+                  {nameSet === tvDetails?.name &&
+                  titleSet === movieDetails?.title
+                    ? "RUNTIME"
+                    : "EPISODE LENGTH"}
+                </h2>
                 <p>
-                  {nameSet === tvDetails?.name && titleSet === movieDetails?.title
+                  {nameSet === tvDetails?.name &&
+                  titleSet === movieDetails?.title
                     ? formatRuntime(
                         movieDetails && movieDetails.runtime
                           ? movieDetails.runtime
@@ -344,16 +336,10 @@ export default function MovieDetails() {
               </div>
               <div className="movieDetails__generalInfo">
                 <h2>PRODUCTION COMPANIES</h2>
-                {(nameSet === tvDetails?.name && titleSet === movieDetails?.title
-                  ? movieDetails && movieDetails.production_companies
-                  : tvDetails && tvDetails.production_companies) &&
-                (nameSet === tvDetails?.name && titleSet === movieDetails?.title
-                  ? movieDetails && movieDetails.production_companies.length > 0
-                  : tvDetails && tvDetails.production_companies.length > 0)
-                  ? (nameSet === tvDetails?.name && titleSet === movieDetails?.title
-                      ? movieDetails && movieDetails.production_companies
-                      : tvDetails && tvDetails.production_companies
-                    ).map((company) => <p key={company.id}>{company.name}</p>)
+                {productionCompanies.length > 0
+                  ? productionCompanies.map((company) => (
+                      <p key={company.id}>{company.name}</p>
+                    ))
                   : null}
               </div>
             </div>
