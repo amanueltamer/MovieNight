@@ -8,7 +8,6 @@ import "../css/Popular.css";
 const Popular = () => {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
-  const [totalPages, setTotalPages] = useState(0);
   const [subset, setSubset] = useState([]);
   const navigate = useNavigate();
 
@@ -25,7 +24,6 @@ const Popular = () => {
     const dataExtract = data.results;
 
     setData(dataExtract);
-    setTotalPages(data.total_pages);
     setSubset(dataExtract.slice(0, itemsPerPage));
   }
 
@@ -56,20 +54,23 @@ const Popular = () => {
               subset.map((movie) => (
                 <div className="popular__card" key={movie.id}>
                   <div className="popular__cardImg">
-                    <img src={IMG_API + movie.poster_path} alt={movie.name} onClick={() => {
-                    
-                    if (movie.title) {
-                      // Use title as a route parameter
-                      navigate(`/movie/${movie.id}/${movie.title}`);
-                    } else if (movie.name) {
-                      // Use name as a route parameter
-                      navigate(`/show/${movie.id}/${movie.name}`);
-                    }
-                  }}/>
+                    <img
+                      src={IMG_API + movie.poster_path}
+                      alt={movie.name}
+                      onClick={() => {
+                        if (movie.title) {
+                          navigate(`/movie/${movie.id}/${movie.title}`);
+                        } else if (movie.name) {
+                          navigate(`/show/${movie.id}/${movie.name}`);
+                        }
+                      }}
+                    />
                     <p className="popular__upcomingRating">
-                    <Star />
-                    <span className="popular__upcomingRate">{movie.vote_average.toFixed(1)}</span>
-                  </p>
+                      <Star />
+                      <span className="popular__upcomingRate">
+                        {movie.vote_average.toFixed(1)}
+                      </span>
+                    </p>
                   </div>
                   <div className="popular__cardName">
                     <h3 className="popular__cardTitle">{movie.title}</h3>
