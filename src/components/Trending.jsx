@@ -1,25 +1,15 @@
 import { Star } from "@mui/icons-material";
-import {
-  FormControlLabel,
-  Radio,
-  RadioGroup,
-  ToggleButton,
-  ToggleButtonGroup,
-  useMediaQuery,
-} from "@mui/material";
+import { ToggleButton, ToggleButtonGroup, useMediaQuery } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "../css/Trending.css";
-import { setMediaType } from "../features/mediaActions";
 
 export default function Trending() {
-  const [trending, setTrending] = useState();
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
-  const [totalPages, setTotalPages] = useState(0);
   const [subset, setSubset] = useState([]);
   const navigate = useNavigate();
   const isSmallScreen = useMediaQuery("(max-width: 1184px)");
@@ -51,12 +41,11 @@ export default function Trending() {
     console.log(dataExtract);
 
     setData(dataExtract);
-    setTotalPages(data.total_pages / 2);
     if (isSmallScreen) {
-        setSubset(dataExtract.slice(0, itemsPerPage));
-        } else {
-          setSubset(dataExtract.slice(0, itemsPerPage));
-        }
+      setSubset(dataExtract.slice(0, itemsPerPage));
+    } else {
+      setSubset(dataExtract.slice(0, itemsPerPage));
+    }
   }
 
   useEffect(() => {
@@ -104,7 +93,10 @@ export default function Trending() {
                   value="movie"
                   aria-label="Movies"
                   className={
-                    mediaType === "movie" || (mediaType === "movie" && prevMediaType === "tv") || (mediaType === "movie" && prevMediaType === null) || (mediaType === null && prevMediaType === "movie")
+                    mediaType === "movie" ||
+                    (mediaType === "movie" && prevMediaType === "tv") ||
+                    (mediaType === "movie" && prevMediaType === null) ||
+                    (mediaType === null && prevMediaType === "movie")
                       ? "selectedButton"
                       : "customToggleButton"
                   }
@@ -115,7 +107,12 @@ export default function Trending() {
                   value="tv"
                   aria-label="TV Shows"
                   className={
-                    mediaType === "tv" || (mediaType === "tv" && prevMediaType === "movie") || (mediaType === "tv" && prevMediaType === null) || (mediaType === null && prevMediaType === "tv") ? "selectedButton" : "customToggleButton"
+                    mediaType === "tv" ||
+                    (mediaType === "tv" && prevMediaType === "movie") ||
+                    (mediaType === "tv" && prevMediaType === null) ||
+                    (mediaType === null && prevMediaType === "tv")
+                      ? "selectedButton"
+                      : "customToggleButton"
                   }
                 >
                   TV Shows
@@ -132,12 +129,9 @@ export default function Trending() {
                           src={IMG_API + movie.poster_path}
                           alt=""
                           onClick={() => {
-                    
                             if (movie.title) {
-                              // Use title as a route parameter
                               navigate(`/movie/${movie.id}/${movie.title}`);
                             } else if (movie.name) {
-                              // Use name as a route parameter
                               navigate(`/show/${movie.id}/${movie.name}`);
                             }
                           }}
@@ -179,7 +173,7 @@ export default function Trending() {
               )}
             </div>
             <ReactPaginate
-              pageCount={totalPages}
+              pageCount="500"
               onPageChange={handlePageChange}
               forcePage={currentPage}
               previousLabel="Prev"
