@@ -53,25 +53,29 @@ const TopRated = () => {
             {subset && subset.length > 0 ? (
               subset.map((movie) => (
                 <div className="topRated__card" key={movie.id}>
-                  <div className="topRated__cardImg">
-                    <img
-                      src={IMG_API + movie.poster_path}
-                      alt={movie.name}
-                      onClick={() => {
-                        if (movie.title) {
-                          navigate(`/movie/${movie.id}/${movie.title}`);
-                        } else if (movie.name) {
-                          navigate(`/show/${movie.id}/${movie.name}`);
-                        }
-                      }}
-                    />
-                    <p className="topRated__upcomingRating">
-                      <Star />
-                      <span className="topRated__upcomingRate">
-                        {movie.vote_average.toFixed(1)}
-                      </span>
-                    </p>
-                  </div>
+                  {movie && movie.poster_path ? (
+                    <div className="topRated__cardImg">
+                      <img
+                        src={IMG_API + movie.poster_path}
+                        alt={movie.name}
+                        onClick={() => {
+                          if (movie.title) {
+                            navigate(`/movie/${movie.id}/${movie.title}`);
+                          } else if (movie.name) {
+                            navigate(`/show/${movie.id}/${movie.name}`);
+                          }
+                        }}
+                      />
+                      <p className="topRated__upcomingRating">
+                        <Star />
+                        <span className="topRated__upcomingRate">
+                          {movie.vote_average.toFixed(1)}
+                        </span>
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="movieDetails__cardImgBlank"></div>
+                  )}
                   <div className="topRated__cardName">
                     <h3 className="topRated__cardTitle">{movie.title}</h3>
                     <h3 className="topRated__cardDate">{movie.release_date}</h3>
