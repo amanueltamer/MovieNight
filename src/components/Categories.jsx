@@ -113,12 +113,9 @@ export default function Categories() {
                     src={IMG_API + movie.poster_path}
                     alt={movie.title}
                     onClick={() => {
-                    
                       if (movie.title) {
-                        // Use title as a route parameter
                         navigate(`/movie/${movie.id}/${movie.title}`);
                       } else if (movie.name) {
-                        // Use name as a route parameter
                         navigate(`/show/${movie.id}/${movie.name}`);
                       }
                     }}
@@ -163,12 +160,9 @@ export default function Categories() {
                     src={IMG_API + movie.poster_path}
                     alt={movie.title}
                     onClick={() => {
-                    
                       if (movie.title) {
-                        // Use title as a route parameter
                         navigate(`/movie/${movie.id}/${movie.title}`);
                       } else if (movie.name) {
-                        // Use name as a route parameter
                         navigate(`/show/${movie.id}/${movie.name}`);
                       }
                     }}
@@ -213,14 +207,10 @@ export default function Categories() {
                     src={IMG_API + movie.poster_path}
                     alt={movie.title}
                     onClick={() => {
-                    
                       if (movie.title) {
-                        // Use title as a route parameter
                         navigate(`/movie/${movie.id}/${movie.title}`);
                       } else if (movie.name) {
-                        // Use name as a route parameter
                         navigate(`/show/${movie.id}/${movie.name}`);
-
                       }
                     }}
                   />
