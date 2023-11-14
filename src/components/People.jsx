@@ -60,7 +60,7 @@ const People = () => {
             {subset && subset.length > 0 ? (
               subset.map((movie) => (
                 <div className="people__card" key={movie.id}>
-                  {movie.profile_path ? (
+                  {movie && movie.profile_path ? (
                     <div className="search__cardImg">
                       <img
                         src={IMG_API + movie.profile_path}
