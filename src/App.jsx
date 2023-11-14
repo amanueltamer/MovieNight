@@ -6,7 +6,6 @@ import Upcomingpage from "./components/UpcomingPage";
 import TopRatedPage from "./components/TopRatedPage";
 import PopularPage from "./components/PopularPage";
 import MovieDetailsPage from "./components/MovieDetailsPage";
-import Search from "./components/Search";
 import SearchPage from "./components/SearchPage";
 import DiscoverPage from "./components/DiscoverPage";
 
