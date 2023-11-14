@@ -53,27 +53,32 @@ const Upcoming = () => {
             {subset && subset.length > 0 ? (
               subset.map((movie) => (
                 <div className="upcoming__card" key={movie.id}>
-                  <div className="upcoming__cardImg">
-                    <img
-                      src={IMG_API + movie.poster_path}
-                      alt={movie.name}
-                      onClick={() => {
-                        if (movie.title) {
-                          // Use title as a route parameter
-                          navigate(`/movie/${movie.id}/${movie.title}`);
-                        } else if (movie.name) {
-                          // Use name as a route parameter
-                          navigate(`/show/${movie.id}/${movie.name}`);
-                        }
-                      }}
-                    />
-                    <p className="upcoming__Rating">
-                      <Star />
-                      <span className="upcoming__Rate">
-                        {movie.vote_average.toFixed(1)}
-                      </span>
-                    </p>
-                  </div>
+                  {movie && movie.poster_path ? (
+                    <div className="upcoming__cardImg">
+                      <img
+                        src={IMG_API + movie.poster_path}
+                        alt={movie.name}
+                        onClick={() => {
+                          if (movie.title) {
+                            // Use title as a route parameter
+                            navigate(`/movie/${movie.id}/${movie.title}`);
+                          } else if (movie.name) {
+                            // Use name as a route parameter
+                            navigate(`/show/${movie.id}/${movie.name}`);
+                          }
+                        }}
+                      />
+                      <p className="upcoming__Rating">
+                        <Star />
+                        <span className="upcoming__Rate">
+                          {movie.vote_average.toFixed(1)}
+                        </span>
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="movieDetails__cardImgBlank"></div>
+                  )}
+
                   <div className="upcoming__cardName">
                     <h3 className="upcoming__cardTitle">{movie.title}</h3>
                     <h3 className="upcoming__cardDate">{movie.release_date}</h3>
