@@ -8,10 +8,8 @@ import "../css/People.css";
 const People = () => {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
-  const [totalPages, setTotalPages] = useState(0);
   const [subset, setSubset] = useState([]);
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(true);
   const isSmallScreen = useMediaQuery("(max-width: 2px)");
 
   const itemsPerPage = 20;
@@ -27,7 +25,6 @@ const People = () => {
     const dataExtract = data.results;
 
     setData(dataExtract);
-    setTotalPages(data.total_pages);
     if (isSmallScreen) {
       setSubset(dataExtract.slice(0, itemsPerPage - 11));
     } else {
@@ -37,7 +34,6 @@ const People = () => {
 
   useEffect(() => {
     getPeople(currentPage + 1);
-    setIsLoading(false);
   }, [currentPage, isSmallScreen]);
 
   const handlePageChange = (selectedPage) => {
@@ -46,7 +42,6 @@ const People = () => {
     const newStartIndex = selectedPage.selected * itemsPerPage;
     const newEndIndex = newStartIndex + itemsPerPage;
 
-    // Adjust the subset to include items from newStartIndex to newEndIndex
     const newSubset = data.slice(newStartIndex, newEndIndex);
 
     setSubset(newSubset);
@@ -65,7 +60,7 @@ const People = () => {
             {subset && subset.length > 0 ? (
               subset.map((movie) => (
                 <div className="people__card" key={movie.id}>
-                  {!isLoading ? (
+                  {movie.profile_path ? (
                     <div className="search__cardImg">
                       <img
                         src={IMG_API + movie.profile_path}
@@ -82,18 +77,12 @@ const People = () => {
                                 alt={knownFor.name || knownFor.title}
                                 onClick={() => {
                                   if (knownFor.title) {
-                                    // Use title as a route parameter
                                     navigate(
-                                      `/movie/${
-                                        knownFor.id
-                                      }/${knownFor.title}`
+                                      `/movie/${knownFor.id}/${knownFor.title}`
                                     );
                                   } else if (knownFor.name) {
-                                    // Use name as a route parameter
                                     navigate(
-                                      `/show/${
-                                        knownFor.id
-                                      }/${knownFor.name}`
+                                      `/show/${knownFor.id}/${knownFor.name}`
                                     );
                                   }
                                 }}
