@@ -3,10 +3,10 @@ import React, { useEffect, useRef, useState } from "react";
 import "../css/Movies.css";
 import { useNavigate } from "react-router-dom";
 import { ArrowCircleLeft, ArrowCircleRight, Star } from "@mui/icons-material";
-import { Button, useMediaQuery } from "@mui/material";
+import { Button } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Navigation, Autoplay, EffectFade } from 'swiper/core';
-import 'swiper/swiper-bundle.min.css';
+import SwiperCore, { Navigation, Autoplay, EffectFade } from "swiper/core";
+import "swiper/swiper-bundle.min.css";
 
 export default function Movies() {
   const [movies, setMovies] = useState({});
@@ -16,9 +16,6 @@ export default function Movies() {
   const maxLength = 200;
 
   const swiperRef = useRef(null);
-  const slider = React.useRef(null);
-
-  const isSmallScreen = useMediaQuery("(max-width: 768px)");
 
   async function getMovies() {
     const { data } = await axios.get(
@@ -41,32 +38,25 @@ export default function Movies() {
   SwiperCore.use([Navigation, Autoplay, EffectFade]);
 
   const settings = {
-  slidesPerView: 1,
-  navigation: {
-    nextEl: ".movies__nextButton",
-    prevEl: ".movies__prevButton",
-  },
-  effect: "fade",
-  speed: 800,
-  easing: "ease-in-out",
-  fadeEffect: {
-    crossFade: true,
-  },
-  autoplay: {
-    delay: 4000,
-  },
-  loop: true,
-  onInit: (swiper) => {
-    swiperRef.current = swiper;
-  },
-};
-
-console.log(movies)
-
-  // const handleMovieDetailsClick = (movieId, event, title, name) => {
-  //   event.stopPropagation();
-  //   navigate(`/movie/${movieId}/${encodeURIComponent(title)}/${encodeURIComponent(name)}`)
-  // };
+    slidesPerView: 1,
+    navigation: {
+      nextEl: ".movies__nextButton",
+      prevEl: ".movies__prevButton",
+    },
+    effect: "fade",
+    speed: 800,
+    easing: "ease-in-out",
+    fadeEffect: {
+      crossFade: true,
+    },
+    autoplay: {
+      delay: 4000,
+    },
+    loop: true,
+    onInit: (swiper) => {
+      swiperRef.current = swiper;
+    },
+  };
 
   return (
     <div className="movies">
@@ -77,7 +67,9 @@ console.log(movies)
               <div
                 className="movies__background"
                 style={{
-                  backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.89) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.9) 100%), url(${IMG_API + movie.backdrop_path})`,
+                  backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.89) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.9) 100%), url(${
+                    IMG_API + movie.backdrop_path
+                  })`,
                   backgroundRepeat: "no-repeat",
                   backgroundSize: "cover",
                   backgroundPosition: "top center",
@@ -108,12 +100,9 @@ console.log(movies)
                     <Button
                       className="movies__details"
                       onClick={() => {
-                    
                         if (movie.title) {
-                          // Use title as a route parameter
                           navigate(`/movie/${movie.id}/${movie.title}`);
                         } else if (movie.name) {
-                          // Use name as a route parameter
                           navigate(`/show/${movie.id}/${movie.name}`);
                         }
                       }}
@@ -128,7 +117,6 @@ console.log(movies)
                 <button
                   className="movies__nextButton"
                   onClick={() => swiperRef.current?.slideNext()}
-
                 >
                   <ArrowCircleRight />
                 </button>
@@ -144,5 +132,3 @@ console.log(movies)
     </div>
   );
 }
-
-
