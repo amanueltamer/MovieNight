@@ -26,8 +26,6 @@ const Search = () => {
 
     const filteredResults = data.results;
 
-    console.log(filteredResults);
-
     setData(filteredResults);
     setSubset(filteredResults.slice(0, itemsPerPage));
   }
