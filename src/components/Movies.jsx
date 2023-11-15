@@ -24,8 +24,6 @@ export default function Movies() {
 
     const dataExtract = data.results;
 
-    console.log(dataExtract);
-
     const limitedMovies = dataExtract ? dataExtract.slice(0, 6) : [];
 
     setMovies(limitedMovies);
