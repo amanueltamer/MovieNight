@@ -15,7 +15,6 @@ export default function MovieDetails() {
 
   const IMG_API = "https://image.tmdb.org/t/p/original/";
   const API_KEY = "d6ed228d534be022d42faf1a2d1a9472";
-  const maxLength = 500;
 
   async function getMovieDetails() {
     const apiUrl = `https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}`;
@@ -97,6 +96,16 @@ export default function MovieDetails() {
       ? (movieDetails && movieDetails.production_companies) || []
       : (tvDetails && tvDetails.production_companies) || [];
 
+  function extractFirstFourSentences(text) {
+    // Use a regular expression to split the text into sentences
+    const sentences = text.match(/[^.!?]+[.!?]+/g);
+
+    // Take the first four sentences
+    const firstFourSentences = sentences ? sentences.slice(0, 4).join(" ") : "";
+
+    return firstFourSentences;
+  }
+
   return (
     <div className="movie__details" key={id}>
       <div
@@ -150,14 +159,10 @@ export default function MovieDetails() {
                 {nameSet === tvDetails?.name && titleSet === movieDetails?.title
                   ? movieDetails &&
                     movieDetails.overview &&
-                    (movieDetails.overview.length > maxLength
-                      ? movieDetails.overview.slice(0, maxLength) + "..."
-                      : movieDetails.overview)
+                    extractFirstFourSentences(movieDetails.overview)
                   : tvDetails &&
                     tvDetails.overview &&
-                    (tvDetails.overview.length > maxLength
-                      ? tvDetails.overview.slice(0, maxLength) + "..."
-                      : tvDetails.overview)}
+                    extractFirstFourSentences(tvDetails.overview)}
               </h3>
             </div>
           </div>
