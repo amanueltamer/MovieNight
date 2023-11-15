@@ -38,8 +38,6 @@ export default function Trending() {
 
     const dataExtract = data.results;
 
-    console.log(dataExtract);
-
     setData(dataExtract);
     if (isSmallScreen) {
       setSubset(dataExtract.slice(0, itemsPerPage));
@@ -65,12 +63,9 @@ export default function Trending() {
 
   const handleMediaTypeToggle = (newMediaType) => {
     if (newMediaType !== mediaType) {
-      console.log("Setting new mediaType:", newMediaType);
       dispatch({ type: "SET_MEDIA_TYPE", payload: newMediaType });
     }
   };
-
-  console.log(mediaType);
 
   return (
     <div className="trending">
