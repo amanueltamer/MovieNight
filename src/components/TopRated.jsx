@@ -8,6 +8,7 @@ import "../css/TopRated.css";
 const TopRated = () => {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
   const [subset, setSubset] = useState([]);
   const navigate = useNavigate();
 
@@ -24,6 +25,7 @@ const TopRated = () => {
     const dataExtract = data.results;
 
     setData(dataExtract);
+    setTotalPages(data.total_pages);
     setSubset(dataExtract.slice(0, itemsPerPage));
   }
 
@@ -90,7 +92,7 @@ const TopRated = () => {
           </div>
 
           <ReactPaginate
-            pageCount="500"
+            pageCount={totalPages}
             onPageChange={handlePageChange}
             forcePage={currentPage}
             previousLabel="Prev"
