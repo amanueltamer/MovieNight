@@ -49,8 +49,6 @@ export default function Discover() {
 
       const dataExtract = data.results;
 
-      console.log(dataExtract);
-
       if (dataExtract.length > 0) {
         setData(dataExtract);
         const totalPagesToShow = Math.min(data.total_pages, 500);
@@ -102,17 +100,11 @@ export default function Discover() {
 
   const handleMediaTypeToggle = (newMediaType) => {
     if (newMediaType !== mediaType) {
-      console.log("Setting new mediaType:", newMediaType);
       dispatch({ type: "SET_MEDIA_TYPE", payload: newMediaType });
       setCurrentPage(0);
     }
   };
 
-  console.log(selectedMovieValue);
-  console.log(selectedTvValue);
-  console.log("Media Type", mediaType);
-  console.log("Prev Media Type", prevMediaType);
-  console.log(data);
   return (
     <div className="trending">
       <div className="trending">
