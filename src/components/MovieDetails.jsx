@@ -78,9 +78,6 @@ export default function MovieDetails() {
     }
   }
 
-  console.log(tvDetails);
-  console.log(castTvDetails);
-
   if (!movieDetails && !tvDetails) {
     return <div>Loading...</div>;
   } else if (name === undefined && title === undefined) {
