@@ -25,8 +25,6 @@ export default function Categories() {
 
     const dataExtract = data.results;
 
-    console.log(dataExtract);
-
     if (isSmallerScreen) {
       limitedMovies = dataExtract ? dataExtract.slice(0, 4) : [];
     } else if (isSmallScreen) {
@@ -45,8 +43,6 @@ export default function Categories() {
 
     const dataExtract = data.results;
 
-    console.log(dataExtract);
-
     if (isSmallerScreen) {
       limitedMovies = dataExtract ? dataExtract.slice(0, 4) : [];
     } else if (isSmallScreen) {
@@ -64,8 +60,6 @@ export default function Categories() {
     );
 
     const dataExtract = data.results;
-
-    console.log(dataExtract);
 
     if (isSmallerScreen) {
       limitedMovies = dataExtract ? dataExtract.slice(0, 4) : [];
@@ -95,8 +89,6 @@ export default function Categories() {
     getPopularMovies();
     getTopMovies();
   }, [isSmallScreen]);
-
-  console.log(isSmallScreen);
 
   return (
     <div className="categories">
