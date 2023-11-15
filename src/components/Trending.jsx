@@ -117,7 +117,7 @@ export default function Trending() {
             <div className="trending__cards">
               {subset && subset.length > 0 ? (
                 subset.map((movie) => (
-                  <div className="trending__card">
+                  <div className="trending__card" key={movie.id}>
                     {movie && movie.poster_path ? (
                       <div className="trending__cardImg">
                         <img
