@@ -47,8 +47,6 @@ const People = () => {
     setSubset(newSubset);
   };
 
-  console.log(subset);
-
   return (
     <div className="people">
       <div className="people__mainContainer">
