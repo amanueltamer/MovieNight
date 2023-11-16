@@ -168,7 +168,7 @@ export default function Trending() {
               )}
             </div>
             <ReactPaginate
-              pageCount="500"
+              pageCount={Math.ceil(500)}
               onPageChange={handlePageChange}
               forcePage={currentPage}
               previousLabel="Prev"
