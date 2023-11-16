@@ -93,7 +93,7 @@ const Upcoming = () => {
           </div>
 
           <ReactPaginate
-            pageCount="5"
+            pageCount={Math.ceil(5)}
             onPageChange={handlePageChange}
             forcePage={currentPage}
             previousLabel="Prev"
