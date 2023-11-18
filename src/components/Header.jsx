@@ -38,7 +38,7 @@ export default function Header() {
     setDrawerOpen(false);
     if (searchValue !== "") {
       const query = encodeURIComponent(searchValue);
-      navigate(`/search/${query}/${query}`);
+      navigate(`/search/${query}`);
     }
   };
 
