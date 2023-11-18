@@ -9,7 +9,7 @@ const Search = () => {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [subset, setSubset] = useState([]);
-  const { title, name } = useParams();
+  const { query } = useParams();
   const navigate = useNavigate();
 
   const itemsPerPage = 20;
@@ -20,7 +20,7 @@ const Search = () => {
   async function getSearch(pageNumber) {
     const { data } = await axios.get(
       `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&include_adult=false&query=${
-        title || name
+        query
       }&page=${pageNumber}&media_type=person`
     );
 
@@ -32,7 +32,7 @@ const Search = () => {
 
   useEffect(() => {
     getSearch(currentPage + 1);
-  }, [currentPage, title || name]);
+  }, [currentPage, query]);
 
   const handlePageChange = (selectedPage) => {
     setCurrentPage(selectedPage.selected);
@@ -50,7 +50,7 @@ const Search = () => {
       <div className="search__mainContainer">
         <div className="search__innerContainer">
           <div className="search__sectionTitle">
-            <h1>Results for "{title || name}"</h1>
+            <h1>Results for "{query}"</h1>
           </div>
           <div className="search__cards">
             {subset && subset.length > 0 ? (
