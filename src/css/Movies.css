@@ -71,6 +71,7 @@ h3 {
 
 .movies__plot > h3 {
     font-weight: 400;
+    line-height: 28px;
 }
 
 .movies__details {
@@ -177,8 +178,9 @@ h3 {
   .movies__plot {
     max-width: 100%;
     width: 100%;
-    line-height: 28px;
   }
+
+
 
   .movies__info {
     width: 100%;
