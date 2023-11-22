@@ -32,17 +32,20 @@ export default function PeopleDetails() {
     try {
       const { data } = await axios.get(apiUrl);
   
-      // Sort the movies by popularity in descending order
-      const sortedMovies = data.cast.sort((a, b) => b.popularity - a.popularity);
+      // Sort the movies by vote count in descending order
+      const sortedMovies = data.cast.sort((a, b) => b.vote_count - a.vote_count);
   
       // Use a set to keep track of unique movie IDs
       const uniqueMovieIds = new Set();
   
       // Filter out duplicates and movies where the character includes "Self", and get the top 12 movies
       const top12Movies = sortedMovies.filter(movie => {
+        const isSelfOrHimself = ["Self", "Himself", "Herself"].some(value =>
+            movie.character.includes(value)
+          );
         if (
           !uniqueMovieIds.has(movie.id) &&
-          !movie.character.toLowerCase().includes("self")
+          !isSelfOrHimself
         ) {
           uniqueMovieIds.add(movie.id);
           return true;
