@@ -86,6 +86,14 @@ const People = () => {
                                 }}
                               />
                             ))}
+                             <p className="search__upcomingRating">
+                              <span
+                                className="search__upcomingRate"
+                                onClick={() => navigate(`/person/${movie.id}`)}
+                              >
+                                <h4>Click for Actor Details</h4>
+                              </span>
+                            </p>
                           </div>
                         )}
                     </div>
