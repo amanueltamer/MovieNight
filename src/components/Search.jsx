@@ -19,9 +19,7 @@ const Search = () => {
 
   async function getSearch(pageNumber) {
     const { data } = await axios.get(
-      `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&include_adult=false&query=${
-        query
-      }&page=${pageNumber}&media_type=person`
+      `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&include_adult=false&query=${query}&page=${pageNumber}&media_type=person`
     );
 
     const filteredResults = data.results;
@@ -44,6 +42,8 @@ const Search = () => {
 
     setSubset(newSubset);
   };
+
+  console.log(subset)
 
   return (
     <div className="search">
@@ -103,6 +103,14 @@ const Search = () => {
                                 }}
                               />
                             ))}
+                            <p className="search__upcomingRating">
+                              <span
+                                className="search__upcomingRate"
+                                onClick={() => navigate(`/person/${movie.id}`)}
+                              >
+                                <h4>Click for Actor Details</h4>
+                              </span>
+                            </p>
                           </div>
                         )}
                     </div>
