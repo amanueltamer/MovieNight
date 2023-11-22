@@ -8,6 +8,7 @@ import PopularPage from "./components/PopularPage";
 import MovieDetailsPage from "./components/MovieDetailsPage";
 import SearchPage from "./components/SearchPage";
 import DiscoverPage from "./components/DiscoverPage";
+import PeopleDetailsPage from "./components/PeopleDetailsPage";
 
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Route path="/topRated" element={<TopRatedPage />}></Route>
         <Route path="/popular" element={<PopularPage />}></Route>
         <Route path="/movie?/show?/:id/:title?/:name?" element={<MovieDetailsPage />} />
+        <Route path="/person/:id?" element={<PeopleDetailsPage />} />
         <Route path="/search/:query?" element={<SearchPage />} />
       </Routes>
     </div>
