@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Star } from "@mui/icons-material";
 import "../css/MovieDetails.css";
+import { useMediaQuery } from "@mui/material";
 
 export default function MovieDetails() {
   const { id, title, name } = useParams();
@@ -12,6 +13,8 @@ export default function MovieDetails() {
   const [castTvDetails, setCastTvDetails] = useState(null);
   const [titleSet, setTitleSet] = useState("");
   const [nameSet, setNameSet] = useState("");
+  const navigate = useNavigate();
+  const isSmallScreen = useMediaQuery("(max-width: 768px)");
 
   const IMG_API = "https://image.tmdb.org/t/p/original/";
   const API_KEY = "d6ed228d534be022d42faf1a2d1a9472";
@@ -102,13 +105,14 @@ export default function MovieDetails() {
 
     return firstFourSentences;
   }
+  console.log(castDetails)
 
   return (
     <div className="movie__details" key={id}>
       <div
         className="movieDetails__background"
         style={{
-          backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.89) 0%, rgba(0,0,0,0.6) 50%, rgba(0,0,0,0.9) 100%), url(${
+          backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.89) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.9) 100%), url(${
             IMG_API +
             (nameSet === tvDetails?.name && titleSet === movieDetails?.title
               ? movieDetails && movieDetails.backdrop_path
@@ -117,6 +121,15 @@ export default function MovieDetails() {
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "top center",
+          ...(isSmallScreen
+            ? { backgroundImage:  `linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.9) 100%), url(${
+              IMG_API +
+            (nameSet === tvDetails?.name && titleSet === movieDetails?.title
+              ? movieDetails && movieDetails.backdrop_path
+              : tvDetails && tvDetails.backdrop_path)
+            })`} // Small screen background image
+            : {} // No additional styles for larger screens
+          ),
         }}
       >
         <div className="movieDetails__container">
@@ -182,6 +195,9 @@ export default function MovieDetails() {
                             <img
                               src={IMG_API + cast.profile_path}
                               alt={cast.name}
+                              onClick = {
+                                () => navigate(`/person/${cast.id}`)
+                              }
                             />
                           </div>
                         ) : (
@@ -210,6 +226,9 @@ export default function MovieDetails() {
                             <img
                               src={IMG_API + cast.profile_path}
                               alt={cast.name}
+                              onClick={
+                               () => navigate(`/person/${cast.id}`)
+                              }
                             />
                           </div>
                         ) : (
