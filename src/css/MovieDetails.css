@@ -13,6 +13,16 @@
   align-items: center;
 }
 
+.people__details {
+  color: var(--fourthTheme-color);
+}
+
+.movieDetails__CastAndInfoContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .movieDetails__background {
   height: 80vh;
   display: flex;
@@ -119,6 +129,11 @@ p {
 .movieDetails__card {
   overflow: hidden;
   margin-top: 40px;
+  transition: transform 0.2s ease;
+}
+
+.movieDetails__card:hover {
+  transform: scale(1.07);
 }
 
 .movieDetails__card:nth-child(4n) {
