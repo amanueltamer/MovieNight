@@ -2,6 +2,11 @@
   flex: 1;
 }
 
+h4 {
+  margin: 8px 0px 8px 0px;
+  text-align: center;
+}
+
 .search__mainContainer {
   padding: 0px 48px;
 }
@@ -36,6 +41,10 @@
 .search__card {
   overflow: hidden;
   transition: transform 0.2s ease;
+}
+
+.search__card:hover {
+  transform: scale(1.07);
 }
 
 .search__card:nth-child(5n) {
