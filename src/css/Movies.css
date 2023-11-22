@@ -70,7 +70,7 @@ h3 {
 }
 
 .movies__plot > h3 {
-    font-weight: 300;
+    font-weight: 400;
 }
 
 .movies__details {
@@ -83,6 +83,7 @@ h3 {
 
 .movies__poster {
   width: 32%;
+  pointer-events: none;
 }
 
 .movies__poster > img {
@@ -176,6 +177,7 @@ h3 {
   .movies__plot {
     max-width: 100%;
     width: 100%;
+    line-height: 28px;
   }
 
   .movies__info {
