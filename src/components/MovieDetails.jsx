@@ -189,7 +189,7 @@ export default function MovieDetails() {
                 titleSet === movieDetails?.title ? (
                   castDetails && castDetails.length > 0 ? (
                     castDetails.map((cast) => (
-                      <div className="movieDetails__card" key={cast.cast_id}>
+                      <div className="movieDetails__card" key={cast.id}>
                         {cast && cast.profile_path ? (
                           <div className="movieDetails__cardImg">
                             <img
@@ -220,7 +220,7 @@ export default function MovieDetails() {
                 ) : castTvDetails ? (
                   castTvDetails.length > 0 ? (
                     castTvDetails.map((cast) => (
-                      <div className="movieDetails__card" key={cast.cast_id}>
+                      <div className="movieDetails__card" key={cast.id}>
                         {cast && cast.profile_path ? (
                           <div className="movieDetails__cardImg">
                             <img
