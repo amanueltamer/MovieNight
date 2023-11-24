@@ -108,7 +108,7 @@ export default function PeopleDetails() {
   return (
     <div className="people__details">
       {personMovieDetails ? (
-        <Swiper {...settings} navigation rewind>
+        <Swiper {...settings} navigation rewind="true">
           {personMovieDetails.map((castMember) => (
             <SwiperSlide key={castMember.id}>
               <div
