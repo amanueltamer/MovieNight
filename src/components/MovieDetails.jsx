@@ -105,7 +105,7 @@ export default function MovieDetails() {
 
     return firstFourSentences;
   }
-  console.log(castDetails)
+  console.log(castDetails);
 
   return (
     <div className="movie__details" key={id}>
@@ -122,14 +122,16 @@ export default function MovieDetails() {
           backgroundSize: "cover",
           backgroundPosition: "top center",
           ...(isSmallScreen
-            ? { backgroundImage:  `linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.9) 100%), url(${
-              IMG_API +
-            (nameSet === tvDetails?.name && titleSet === movieDetails?.title
-              ? movieDetails && movieDetails.backdrop_path
-              : tvDetails && tvDetails.backdrop_path)
-            })`} // Small screen background image
-            : {} // No additional styles for larger screens
-          ),
+            ? {
+                backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.9) 100%), url(${
+                  IMG_API +
+                  (nameSet === tvDetails?.name &&
+                  titleSet === movieDetails?.title
+                    ? movieDetails && movieDetails.backdrop_path
+                    : tvDetails && tvDetails.backdrop_path)
+                })`,
+              } // Small screen background image
+            : {}), // No additional styles for larger screens
         }}
       >
         <div className="movieDetails__container">
@@ -195,9 +197,7 @@ export default function MovieDetails() {
                             <img
                               src={IMG_API + cast.profile_path}
                               alt={cast.name}
-                              onClick = {
-                                () => navigate(`/person/${cast.id}`)
-                              }
+                              onClick={() => navigate(`/person/${cast.id}`)}
                             />
                           </div>
                         ) : (
@@ -226,9 +226,7 @@ export default function MovieDetails() {
                             <img
                               src={IMG_API + cast.profile_path}
                               alt={cast.name}
-                              onClick={
-                               () => navigate(`/person/${cast.id}`)
-                              }
+                              onClick={() => navigate(`/person/${cast.id}`)}
                             />
                           </div>
                         ) : (
