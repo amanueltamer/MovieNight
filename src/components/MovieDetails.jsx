@@ -60,13 +60,16 @@ export default function MovieDetails() {
   }
 
   useEffect(() => {
-    getMovieDetails();
-    getTvDetails();
-    getCastTvDetails();
-    getCastDetails();
+    if (title) {
+      getMovieDetails();
+      getCastDetails();
+    } else if (name) {
+      getTvDetails();
+      getCastTvDetails();
+    }
     setTitleSet(title);
     setNameSet(name);
-  }, [id]);
+  }, [id, title, name]);
 
   function formatRuntime(minutes) {
     const hours = Math.floor(minutes / 60);
