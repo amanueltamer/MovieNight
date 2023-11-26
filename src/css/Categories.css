@@ -43,7 +43,7 @@
 }
 
 .cat__upcomingContainer:hover {
-    transform: scale(1.07);
+    transform: scale(1.04);
 }
 
 .cat__upcomingContainer:nth-child(5n) {
