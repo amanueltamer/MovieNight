@@ -133,7 +133,7 @@ p {
 }
 
 .movieDetails__card:hover {
-  transform: scale(1.07);
+  transform: scale(1.04);
 }
 
 .movieDetails__card:nth-child(4n) {
