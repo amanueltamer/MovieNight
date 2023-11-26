@@ -59,7 +59,7 @@ export default function Movies() {
   return (
     <div className="movies">
       {movies && movies.length > 0 ? (
-        <Swiper {...settings} navigation rewind>
+        <Swiper {...settings} navigation rewind="true">
           {movies.map((movie) => (
             <SwiperSlide key={movie.id}>
               <div
