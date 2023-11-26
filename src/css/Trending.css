@@ -81,7 +81,7 @@
 }
 
 .trending__card:hover {
-  transform: scale(1.07);
+  transform: scale(1.04);
 }
 
 .trending__card:nth-child(5n) {
