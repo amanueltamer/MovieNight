@@ -6,7 +6,7 @@ import "../css/MovieDetails.css";
 import { useMediaQuery } from "@mui/material";
 
 export default function MovieDetails() {
-  const { id, title, name } = useParams();
+  const { type, id, title } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
   const [castDetails, setCastDetails] = useState(null);
   const [tvDetails, setTvDetails] = useState(null);
@@ -60,16 +60,15 @@ export default function MovieDetails() {
   }
 
   useEffect(() => {
-    if (title) {
+    if (type === "movie") {
       getMovieDetails();
       getCastDetails();
-    } else if (name) {
+    } else {
       getTvDetails();
       getCastTvDetails();
     }
     setTitleSet(title);
-    setNameSet(name);
-  }, [id, title, name]);
+  }, []);
 
   function formatRuntime(minutes) {
     const hours = Math.floor(minutes / 60);
@@ -86,7 +85,7 @@ export default function MovieDetails() {
 
   if (!movieDetails && !tvDetails) {
     return <div>Loading...</div>;
-  } else if (name === undefined && title === undefined) {
+  } else if (title === undefined) {
     return <div>Loading...</div>;
   }
 
@@ -108,7 +107,6 @@ export default function MovieDetails() {
 
     return firstFourSentences;
   }
-  console.log(castDetails);
 
   return (
     <div className="movie__details" key={id}>
