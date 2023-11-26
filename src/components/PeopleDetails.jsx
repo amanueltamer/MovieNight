@@ -90,11 +90,6 @@ export default function PeopleDetails() {
     },
   };
 
-  console.log(personDetails);
-  console.log(personDetails?.name);
-  console.log(personMovieDetails?.cast);
-  console.log(personMovieDetails)
-
   function extractFirstFourSentences(text) {
     // Use a regular expression to split the text into sentences
     const sentences = text.match(/[^.!?]+[.!?]+/g);
