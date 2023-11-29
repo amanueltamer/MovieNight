@@ -9,6 +9,7 @@ const Search = () => {
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [subset, setSubset] = useState([]);
+  const [totalPages, setTotalPages] = useState(0);
   const { query } = useParams();
   const navigate = useNavigate();
 
@@ -20,12 +21,12 @@ const Search = () => {
   async function getSearch(pageNumber) {
     const { data } = await axios.get(
       `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&include_adult=false&query=${query}&page=${pageNumber}&media_type=person`
-    );
-
-    const filteredResults = data.results;
-
-    setData(filteredResults);
-    setSubset(filteredResults.slice(0, itemsPerPage));
+      );
+      
+      const filteredResults = data.results.sort((a, b) => (b.popularity && b.vote_count) - (a.popularity && a.vote_count));
+      
+      setData(filteredResults);
+      setSubset(filteredResults.slice(0, itemsPerPage));
   }
 
   useEffect(() => {
