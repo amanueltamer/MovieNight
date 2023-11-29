@@ -32,6 +32,11 @@ const Search = () => {
   }
 
   useEffect(() => {
+    setCurrentPage(0);
+    getSearch(1);
+  }, [query]);
+
+  useEffect(() => {
     getSearch(currentPage + 1);
   }, [currentPage, query]);
 
