@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../css/Header.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Search from "@mui/icons-material/Search";
 import {
   Drawer,
@@ -15,6 +15,7 @@ export default function Header() {
   const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState("");
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const { query } = useParams();
 
   const isSmallScreen = useMediaQuery("(max-width: 1024px)");
 
@@ -51,6 +52,12 @@ export default function Header() {
   const toggleDrawer = () => {
     setDrawerOpen(!drawerOpen);
   };
+
+  useEffect(() => {
+    if (searchValue !== query) {
+      setSearchValue("")
+    }
+  }, [query]);
 
   useEffect(() => {}, [isSmallScreen]);
 
