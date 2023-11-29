@@ -24,7 +24,9 @@ const Search = () => {
       );
       
       const filteredResults = data.results.sort((a, b) => (b.popularity && b.vote_count) - (a.popularity && a.vote_count));
-      
+
+      setTotalPages(data.total_pages);
+
       setData(filteredResults);
       setSubset(filteredResults.slice(0, itemsPerPage));
   }
@@ -145,7 +147,7 @@ const Search = () => {
           </div>
 
           <ReactPaginate
-            pageCount={Math.ceil(500)}
+            pageCount={totalPages}
             onPageChange={handlePageChange}
             forcePage={currentPage}
             previousLabel="Prev"
