@@ -90,14 +90,14 @@ export default function PeopleDetails() {
     },
   };
 
-  function extractFirstFourSentences(text) {
+  function extractFirstFiveSentences(text) {
     // Use a regular expression to split the text into sentences
     const sentences = text.match(/[^.!?]+[.!?]+/g);
 
     // Take the first four sentences
-    const firstFourSentences = sentences ? sentences.slice(0, 4).join(" ") : "";
+    const firstFiveSentences = sentences ? sentences.slice(0, 6).join("") : "";
 
-    return firstFourSentences;
+    return firstFiveSentences;
   }
 
   return (
@@ -133,7 +133,7 @@ export default function PeopleDetails() {
                       <div className="movies__plot">
                         {personDetails?.biography ? (
                           <h3>
-                            {extractFirstFourSentences(
+                            {extractFirstFiveSentences(
                               personDetails?.biography
                             )}
                           </h3>
