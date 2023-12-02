@@ -38,7 +38,7 @@ export default function Header() {
   const handleSearch = () => {
     setDrawerOpen(false);
     if (searchValue !== "") {
-      const query = encodeURIComponent(searchValue);
+      const query = searchValue;
       navigate(`/search/${query}`);
     }
   };
@@ -53,11 +53,11 @@ export default function Header() {
     setDrawerOpen(!drawerOpen);
   };
 
-  useEffect(() => {
-    if (searchValue !== query) {
-      setSearchValue("")
-    }
-  }, [query]);
+  // useEffect(() => {
+  //   if (searchValue !== query) {
+  //     setSearchValue("")
+  //   }
+  // }, [query]);
 
   useEffect(() => {}, [isSmallScreen]);
 
