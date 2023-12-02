@@ -108,6 +108,10 @@ export default function MovieDetails() {
     return firstFourSentences;
   }
 
+  console.log(movieDetails)
+  console.log(titleSet)
+  console.log(nameSet)
+
   return (
     <div className="movie__details" key={id}>
       <div
@@ -126,8 +130,7 @@ export default function MovieDetails() {
             ? {
                 backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.9) 100%), url(${
                   IMG_API +
-                  (nameSet === tvDetails?.name &&
-                  titleSet === movieDetails?.title
+                  (nameSet === tvDetails?.name && titleSet === movieDetails?.title
                     ? movieDetails && movieDetails.backdrop_path
                     : tvDetails && tvDetails.backdrop_path)
                 })`,
