@@ -38,7 +38,7 @@ const Search = () => {
 
   useEffect(() => {
     getSearch(currentPage + 1);
-  }, [currentPage, query]);
+  }, [currentPage]);
 
   const handlePageChange = (selectedPage) => {
     setCurrentPage(selectedPage.selected);
@@ -74,9 +74,9 @@ const Search = () => {
                         onClick={() => {
                           if (!movie.profile_path) {
                             if (movie.title) {
-                              navigate(`/movie/${movie.id}/${movie.title}`);
+                              navigate(`/movie/${movie.id}/${encodeURIComponent(movie.title)}`);
                             } else if (movie.name) {
-                              navigate(`/show/${movie.id}/${movie.name}`);
+                              navigate(`/show/${movie.id}/${encodeURIComponent(movie.name)}`);
                             }
                           }
                         }}
@@ -101,11 +101,11 @@ const Search = () => {
                                 onClick={() => {
                                   if (knownFor.title) {
                                     navigate(
-                                      `/movie/${knownFor.id}/${knownFor.title}`
+                                      `/movie/${knownFor.id}/${encodeURIComponent(knownFor.title)}`
                                     );
                                   } else if (knownFor.name) {
                                     navigate(
-                                      `/show/${knownFor.id}/${knownFor.name}`
+                                      `/show/${knownFor.id}/${encodeURIComponent(knownFor.name)}`
                                     );
                                   }
                                 }}
