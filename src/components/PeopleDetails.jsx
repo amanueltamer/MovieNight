@@ -51,7 +51,7 @@ export default function PeopleDetails() {
           return true;
         }
         return false;
-      }).slice(0, 12);
+      }).slice(0, 35);
   
       setPersonMovieDetails(top12Movies);
     } catch (error) {
@@ -59,6 +59,7 @@ export default function PeopleDetails() {
     }
   }
   
+  console.log(personMovieDetails)
   
 
   useEffect(() => {
@@ -181,9 +182,9 @@ export default function PeopleDetails() {
                           alt={movie.title || movie.name}
                           onClick={() => {
                             if (movie.title) {
-                              navigate(`/movie/${movie.id}/${movie.title}`);
+                              navigate(`/movie/${movie.id}/${encodeURIComponent(movie.title)}`);
                             } else if (movie.name) {
-                              navigate(`/show/${movie.id}/${movie.name}`);
+                              navigate(`/show/${movie.id}/${encodeURIComponent(movie.name)}`);
                             }
                           }}
                         />
