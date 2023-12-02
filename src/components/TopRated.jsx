@@ -62,9 +62,9 @@ const TopRated = () => {
                         alt={movie.name}
                         onClick={() => {
                           if (movie.title) {
-                            navigate(`/movie/${movie.id}/${movie.title}`);
+                            navigate(`/movie/${movie.id}/${encodeURIComponent(movie.title)}`);
                           } else if (movie.name) {
-                            navigate(`/show/${movie.id}/${movie.name}`);
+                            navigate(`/show/${movie.id}/${encodeURIComponent(movie.name)}`);
                           }
                         }}
                       />
