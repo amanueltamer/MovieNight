@@ -76,11 +76,11 @@ const People = () => {
                                 onClick={() => {
                                   if (knownFor.title) {
                                     navigate(
-                                      `/movie/${knownFor.id}/${knownFor.title}`
+                                      `/movie/${knownFor.id}/${encodeURIComponent(knownFor.title)}`
                                     );
                                   } else if (knownFor.name) {
                                     navigate(
-                                      `/show/${knownFor.id}/${knownFor.name}`
+                                      `/show/${knownFor.id}/${encodeURIComponent(knownFor.name)}`
                                     );
                                   }
                                 }}
