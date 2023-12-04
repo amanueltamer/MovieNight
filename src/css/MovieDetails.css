@@ -15,6 +15,7 @@
 
 .people__details {
   color: var(--fourthTheme-color);
+  position: sticky;
 }
 
 .movieDetails__CastAndInfoContainer {
