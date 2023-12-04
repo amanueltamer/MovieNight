@@ -98,15 +98,26 @@ export default function MovieDetails() {
       ? (movieDetails && movieDetails.production_companies) || []
       : (tvDetails && tvDetails.production_companies) || [];
 
-  function extractFirstFourSentences(text) {
-    // Use a regular expression to split the text into sentences
-    const sentences = text.match(/[^.!?]+[.!?]+/g);
-
-    // Take the first four sentences
-    const firstFourSentences = sentences ? sentences.slice(0, 4).join(" ") : "";
-
-    return firstFourSentences;
-  }
+      function limitText(text, limit) {
+        if (!text) return "";
+    
+        // Use a regular expression to split the text into sentences
+        const sentences = text.match(/[^.!?]+[.!?]+/g);
+    
+        // Take sentences until the character limit is reached
+        let characterCount = 0;
+        let result = "";
+        for (const sentence of sentences) {
+          if (characterCount + sentence.length <= limit) {
+            result += sentence;
+            characterCount += sentence.length;
+          } else {
+            break;
+          }
+        }
+    
+        return result;
+      }
 
   console.log(movieDetails)
   console.log(titleSet)
@@ -175,10 +186,10 @@ export default function MovieDetails() {
                 {nameSet === tvDetails?.name && titleSet === movieDetails?.title
                   ? movieDetails &&
                     movieDetails.overview &&
-                    extractFirstFourSentences(movieDetails.overview)
+                    limitText(movieDetails.overview, 500)
                   : tvDetails &&
                     tvDetails.overview &&
-                    extractFirstFourSentences(tvDetails.overview)}
+                    limitText(tvDetails.overview, 500)}
               </h3>
             </div>
           </div>
