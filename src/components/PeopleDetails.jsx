@@ -31,36 +31,36 @@ export default function PeopleDetails() {
     const apiUrl = `https://api.themoviedb.org/3/person/${id}/combined_credits?api_key=${API_KEY}`;
     try {
       const { data } = await axios.get(apiUrl);
-  
+
       // Sort the movies by vote count in descending order
-      const sortedMovies = data.cast.sort((a, b) => b.vote_count - a.vote_count);
-  
+      const sortedMovies = data.cast.sort(
+        (a, b) => b.vote_count - a.vote_count
+      );
+
       // Use a set to keep track of unique movie IDs
       const uniqueMovieIds = new Set();
-  
+
       // Filter out duplicates and movies where the character includes "Self", and get the top 12 movies
-      const top12Movies = sortedMovies.filter(movie => {
-        const isSelfOrHimself = ["Self", "Himself", "Herself"].some(value =>
+      const top12Movies = sortedMovies
+        .filter((movie) => {
+          const isSelfOrHimself = ["Self", "Himself", "Herself"].some((value) =>
             movie.character.includes(value)
           );
-        if (
-          !uniqueMovieIds.has(movie.id) &&
-          !isSelfOrHimself
-        ) {
-          uniqueMovieIds.add(movie.id);
-          return true;
-        }
-        return false;
-      }).slice(0, 12);
-  
+          if (!uniqueMovieIds.has(movie.id) && !isSelfOrHimself) {
+            uniqueMovieIds.add(movie.id);
+            return true;
+          }
+          return false;
+        })
+        .slice(0, 12);
+
       setPersonMovieDetails(top12Movies);
     } catch (error) {
       console.error("Error fetching person movie details:", error);
     }
   }
-  
-  console.log(personMovieDetails)
-  
+
+  console.log(personMovieDetails);
 
   useEffect(() => {
     getPeopleDetails();
@@ -91,14 +91,25 @@ export default function PeopleDetails() {
     },
   };
 
-  function extractFirstFiveSentences(text) {
+  function limitText(text, limit) {
+    if (!text) return "";
+
     // Use a regular expression to split the text into sentences
     const sentences = text.match(/[^.!?]+[.!?]+/g);
 
-    // Take the first four sentences
-    const firstFiveSentences = sentences ? sentences.slice(0, 6).join("") : "";
+    // Take sentences until the character limit is reached
+    let characterCount = 0;
+    let result = "";
+    for (const sentence of sentences) {
+      if (characterCount + sentence.length <= limit) {
+        result += sentence;
+        characterCount += sentence.length;
+      } else {
+        break;
+      }
+    }
 
-    return firstFiveSentences;
+    return result;
   }
 
   return (
@@ -110,20 +121,20 @@ export default function PeopleDetails() {
               <div
                 className="movies__background"
                 style={{
-                    backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.89) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.9) 100%), url(${
-                      IMG_API + castMember.backdrop_path
-                    })`,
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: "cover",
-                    backgroundPosition: "top center",
-                    ...(isSmallScreen
-                      ? { backgroundImage:  `linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.9) 100%), url(${
-                        IMG_API + castMember.backdrop_path
-                      })`} // Small screen background image
-                      : {} // No additional styles for larger screens
-                    ),
-                  }}
-                  
+                  backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.89) 0%, rgba(0,0,0,0.55) 50%, rgba(0,0,0,0.9) 100%), url(${
+                    IMG_API + castMember.backdrop_path
+                  })`,
+                  backgroundRepeat: "no-repeat",
+                  backgroundSize: "cover",
+                  backgroundPosition: "top center",
+                  ...(isSmallScreen
+                    ? {
+                        backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.9) 100%), url(${
+                          IMG_API + castMember.backdrop_path
+                        })`,
+                      } // Small screen background image
+                    : {}), // No additional styles for larger screens
+                }}
               >
                 {personDetails ? (
                   <div className="movies__container">
@@ -133,11 +144,7 @@ export default function PeopleDetails() {
                       </div>
                       <div className="movies__plot">
                         {personDetails?.biography ? (
-                          <h3>
-                            {extractFirstFiveSentences(
-                              personDetails?.biography
-                            )}
-                          </h3>
+                          <h3>{limitText(personDetails?.biography, 500)}</h3>
                         ) : (
                           <h3>No Biography Available.</h3>
                         )}
@@ -167,49 +174,57 @@ export default function PeopleDetails() {
       )}
 
       <div className="movieDetails__CastAndInfoContainer">
-      <div className="movieDetails__castAndInfo">
-        <div className="movieDetails__castAndInfoSpacer">
-          <div className="movieDetails__cast">
-            <h2>Roles and Credits</h2>
-            <div className="movieDetails__castContainer">
-              {personMovieDetails ? (
-                personMovieDetails.map((movie) => (
-                  <div className="movieDetails__card" key={movie.id}>
-                    {movie && movie.poster_path ? (
-                      <div className="movieDetails__cardImg" key={movie.id}>
-                        <img
-                          src={IMG_API + movie.poster_path}
-                          alt={movie.title || movie.name}
-                          onClick={() => {
-                            if (movie.title) {
-                              navigate(`/movie/${movie.id}/${encodeURIComponent(movie.title)}`);
-                            } else if (movie.name) {
-                              navigate(`/show/${movie.id}/${encodeURIComponent(movie.name)}`);
-                            }
-                          }}
-                        />
-                      </div>
-                    ) : (
-                      <div className="movieDetails__cardImgBlank"></div>
-                    )}
+        <div className="movieDetails__castAndInfo">
+          <div className="movieDetails__castAndInfoSpacer">
+            <div className="movieDetails__cast">
+              <h2>Roles and Credits</h2>
+              <div className="movieDetails__castContainer">
+                {personMovieDetails ? (
+                  personMovieDetails.map((movie) => (
+                    <div className="movieDetails__card" key={movie.id}>
+                      {movie && movie.poster_path ? (
+                        <div className="movieDetails__cardImg" key={movie.id}>
+                          <img
+                            src={IMG_API + movie.poster_path}
+                            alt={movie.title || movie.name}
+                            onClick={() => {
+                              if (movie.title) {
+                                navigate(
+                                  `/movie/${movie.id}/${encodeURIComponent(
+                                    movie.title
+                                  )}`
+                                );
+                              } else if (movie.name) {
+                                navigate(
+                                  `/show/${movie.id}/${encodeURIComponent(
+                                    movie.name
+                                  )}`
+                                );
+                              }
+                            }}
+                          />
+                        </div>
+                      ) : (
+                        <div className="movieDetails__cardImgBlank"></div>
+                      )}
 
-                    <div className="movieDetails__cardName">
-                      <h3>{movie && (movie.title || movie.name)}</h3>
+                      <div className="movieDetails__cardName">
+                        <h3>{movie && (movie.title || movie.name)}</h3>
+                      </div>
+                      <div className="movieDetails__cardCharacter">
+                        <h3>{movie && movie.character}</h3>
+                      </div>
                     </div>
-                    <div className="movieDetails__cardCharacter">
-                      <h3>{movie && movie.character}</h3>
-                    </div>
+                  ))
+                ) : (
+                  <div className="movieDetails__notLoaded">
+                    <h3>No people found.</h3>
                   </div>
-                ))
-              ) : (
-                <div className="movieDetails__notLoaded">
-                  <h3>No people found.</h3>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </div>
     </div>
   );
