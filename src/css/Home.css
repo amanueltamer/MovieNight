@@ -7,22 +7,21 @@
 }
 
 .home {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* Internet Explorer and Microsoft Edge */
-  }
-  
-  
-  .home::-webkit-scrollbar {
-    display: none;
-  }
-  
-  .home::-webkit-scrollbar-thumb {
-    background-color: transparent; /* Hide the thumb */
-  }
-  
-  .home::-webkit-scrollbar-track {
-    background: transparent; /* Hide the track */
-  }
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer and Microsoft Edge */
+}
+
+.home::-webkit-scrollbar {
+  display: none;
+}
+
+.home::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Hide the thumb */
+}
+
+.home::-webkit-scrollbar-track {
+  background: transparent; /* Hide the track */
+}
 
 .footer {
   padding: 20px;
