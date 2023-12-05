@@ -21,14 +21,16 @@ const Search = () => {
   async function getSearch(pageNumber) {
     const { data } = await axios.get(
       `https://api.themoviedb.org/3/search/multi?api_key=${API_KEY}&include_adult=false&query=${query}&page=${pageNumber}&media_type=person`
-      );
-      
-      const filteredResults = data.results.sort((a, b) => (b.popularity && b.vote_count) - (a.popularity && a.vote_count));
+    );
 
-      setTotalPages(data.total_pages);
+    const filteredResults = data.results.sort(
+      (a, b) => (b.popularity && b.vote_count) - (a.popularity && a.vote_count)
+    );
 
-      setData(filteredResults);
-      setSubset(filteredResults.slice(0, itemsPerPage));
+    setTotalPages(data.total_pages);
+
+    setData(filteredResults);
+    setSubset(filteredResults.slice(0, itemsPerPage));
   }
 
   useEffect(() => {
@@ -51,7 +53,7 @@ const Search = () => {
     setSubset(newSubset);
   };
 
-  console.log(subset)
+  console.log(subset);
 
   return (
     <div className="search">
@@ -74,9 +76,17 @@ const Search = () => {
                         onClick={() => {
                           if (!movie.profile_path) {
                             if (movie.title) {
-                              navigate(`/movie/${movie.id}/${encodeURIComponent(movie.title)}`);
+                              navigate(
+                                `/movie/${movie.id}/${encodeURIComponent(
+                                  movie.title
+                                )}`
+                              );
                             } else if (movie.name) {
-                              navigate(`/show/${movie.id}/${encodeURIComponent(movie.name)}`);
+                              navigate(
+                                `/show/${movie.id}/${encodeURIComponent(
+                                  movie.name
+                                )}`
+                              );
                             }
                           }
                         }}
@@ -101,11 +111,15 @@ const Search = () => {
                                 onClick={() => {
                                   if (knownFor.title) {
                                     navigate(
-                                      `/movie/${knownFor.id}/${encodeURIComponent(knownFor.title)}`
+                                      `/movie/${
+                                        knownFor.id
+                                      }/${encodeURIComponent(knownFor.title)}`
                                     );
                                   } else if (knownFor.name) {
                                     navigate(
-                                      `/show/${knownFor.id}/${encodeURIComponent(knownFor.name)}`
+                                      `/show/${
+                                        knownFor.id
+                                      }/${encodeURIComponent(knownFor.name)}`
                                     );
                                   }
                                 }}
