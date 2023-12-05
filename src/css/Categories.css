@@ -30,7 +30,7 @@
 .categories__container {
   margin-top: 20px;
   display: grid;
-  grid-template-columns: repeat(5,minmax(0,1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 40px;
   justify-content: center;
   align-content: flex-start;
@@ -43,7 +43,7 @@
 }
 
 .cat__upcomingContainer:hover {
-    transform: scale(1.04);
+  transform: scale(1.04);
 }
 
 .cat__upcomingContainer:nth-child(5n) {
@@ -108,7 +108,7 @@
 }
 
 .cat__upcomingRating > .MuiSvgIcon-root {
-    color: #f6d155 !important;
+  color: #f6d155 !important;
   padding-right: 3px !important;
   align-self: baseline !important;
   margin-bottom: 2px !important;
@@ -119,13 +119,13 @@
 }
 
 .cat__upcomingRate {
-    font-weight: 700;
+  font-weight: 700;
 }
 
 @media (max-width: 1024px) {
   .categories__container {
-    grid-template-columns: repeat(4,minmax(0,1fr));
-    gap: 24px;  
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 24px;
   }
 
   .container {
@@ -135,7 +135,7 @@
 
 @media (max-width: 768px) {
   .categories__container {
-    grid-template-columns: repeat(2,minmax(0,1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .container {
