@@ -7,7 +7,6 @@
   align-items: center;
 }
 
-
 h3 {
   margin: 0;
 }
@@ -38,7 +37,7 @@ h3 {
 
 .movies__title {
   font-size: 60px;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .movies__title > h3 {
@@ -50,11 +49,11 @@ h3 {
   margin-top: 20px;
   display: flex;
   align-items: center;
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .movies__rating > h3 {
-    font-weight: 900;
+  font-weight: 900;
 }
 
 .movies__rating > .MuiSvgIcon-root {
@@ -70,8 +69,8 @@ h3 {
 }
 
 .movies__plot > h3 {
-    font-weight: 400;
-    line-height: 28px;
+  font-weight: 400;
+  line-height: 28px;
 }
 
 .movies__details {
@@ -138,7 +137,6 @@ h3 {
 }
 
 @media (max-width: 768px) {
-
   .movies__nextButton {
     display: none;
   }
@@ -179,8 +177,6 @@ h3 {
     max-width: 100%;
     width: 100%;
   }
-
-
 
   .movies__info {
     width: 100%;
