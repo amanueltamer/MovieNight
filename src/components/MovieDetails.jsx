@@ -98,30 +98,30 @@ export default function MovieDetails() {
       ? (movieDetails && movieDetails.production_companies) || []
       : (tvDetails && tvDetails.production_companies) || [];
 
-      function limitText(text, limit) {
-        if (!text) return "";
-    
-        // Use a regular expression to split the text into sentences
-        const sentences = text.match(/[^.!?]+[.!?]+/g);
-    
-        // Take sentences until the character limit is reached
-        let characterCount = 0;
-        let result = "";
-        for (const sentence of sentences) {
-          if (characterCount + sentence.length <= limit) {
-            result += sentence;
-            characterCount += sentence.length;
-          } else {
-            break;
-          }
-        }
-    
-        return result;
-      }
+  function limitText(text, limit) {
+    if (!text) return "";
 
-  console.log(movieDetails)
-  console.log(titleSet)
-  console.log(nameSet)
+    // Use a regular expression to split the text into sentences
+    const sentences = text.match(/[^.!?]+[.!?]+/g);
+
+    // Take sentences until the character limit is reached
+    let characterCount = 0;
+    let result = "";
+    for (const sentence of sentences) {
+      if (characterCount + sentence.length <= limit) {
+        result += sentence;
+        characterCount += sentence.length;
+      } else {
+        break;
+      }
+    }
+
+    return result;
+  }
+
+  console.log(movieDetails);
+  console.log(titleSet);
+  console.log(nameSet);
 
   return (
     <div className="movie__details" key={id}>
@@ -141,7 +141,8 @@ export default function MovieDetails() {
             ? {
                 backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.9) 100%), url(${
                   IMG_API +
-                  (nameSet === tvDetails?.name && titleSet === movieDetails?.title
+                  (nameSet === tvDetails?.name &&
+                  titleSet === movieDetails?.title
                     ? movieDetails && movieDetails.backdrop_path
                     : tvDetails && tvDetails.backdrop_path)
                 })`,
