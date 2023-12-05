@@ -89,7 +89,7 @@ const Search = () => {
                               );
                             }
                           } else if (movie.profile_path) {
-                            navigate(`/person/${movie.id}`)
+                            navigate(`/person/${movie.id}`);
                           }
                         }}
                       />
