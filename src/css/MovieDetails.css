@@ -1,7 +1,7 @@
 .movieDetailsPage {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .movie__details {
@@ -107,7 +107,7 @@
 .movieDetails__castContainer {
   margin-bottom: 40px;
   display: grid;
-  grid-template-columns: repeat(4,minmax(0,1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 24px;
   justify-content: center;
   align-content: flex-start;
@@ -155,29 +155,29 @@ p {
 }
 
 .movieDetails__cardImg:hover .movieDetails__knownFor {
-    opacity: 1;
+  opacity: 1;
 }
 
 .movieDetails__knownFor {
-    width: 100%;
+  width: 100%;
   height: 100%;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
 .movieDetails__knownFor > img {
-    position: absolute;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: transform 0.2s ease;
+  position: absolute;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
 .movieDetails__cardImgBlank {
-    width: 100%;
-    padding-bottom: 150%;
-    border-radius: 6px;
-    background-color: var(--secondTheme-color);
-    margin-bottom: 24px;
+  width: 100%;
+  padding-bottom: 150%;
+  border-radius: 6px;
+  background-color: var(--secondTheme-color);
+  margin-bottom: 24px;
 }
 
 .movieDetails__cardName {
@@ -293,7 +293,7 @@ p {
   }
 
   .movieDetails__castContainer {
-    grid-template-columns: repeat(3,minmax(0,1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .movieDetails__poster {
@@ -333,9 +333,8 @@ p {
 }
 
 @media (max-width: 660px) {
-
   .movieDetails__castContainer {
-    grid-template-columns: repeat(2,minmax(0,1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
   }
 
