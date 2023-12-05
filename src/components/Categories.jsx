@@ -106,9 +106,15 @@ export default function Categories() {
                     alt={movie.title}
                     onClick={() => {
                       if (movie.title) {
-                        navigate(`/movie/${movie.id}/${encodeURIComponent(movie.title)}`);
+                        navigate(
+                          `/movie/${movie.id}/${encodeURIComponent(
+                            movie.title
+                          )}`
+                        );
                       } else if (movie.name) {
-                        navigate(`/show/${movie.id}/${encodeURIComponent(movie.name)}`);
+                        navigate(
+                          `/show/${movie.id}/${encodeURIComponent(movie.name)}`
+                        );
                       }
                     }}
                   />
@@ -153,9 +159,15 @@ export default function Categories() {
                     alt={movie.title}
                     onClick={() => {
                       if (movie.title) {
-                        navigate(`/movie/${movie.id}/${encodeURIComponent(movie.title)}`);
+                        navigate(
+                          `/movie/${movie.id}/${encodeURIComponent(
+                            movie.title
+                          )}`
+                        );
                       } else if (movie.name) {
-                        navigate(`/show/${movie.id}/${encodeURIComponent(movie.name)}`);
+                        navigate(
+                          `/show/${movie.id}/${encodeURIComponent(movie.name)}`
+                        );
                       }
                     }}
                   />
@@ -200,9 +212,15 @@ export default function Categories() {
                     alt={movie.title}
                     onClick={() => {
                       if (movie.title) {
-                        navigate(`/movie/${movie.id}/${encodeURIComponent(movie.title)}`);
+                        navigate(
+                          `/movie/${movie.id}/${encodeURIComponent(
+                            movie.title
+                          )}`
+                        );
                       } else if (movie.name) {
-                        navigate(`/show/${movie.id}/${encodeURIComponent(movie.name)}`);
+                        navigate(
+                          `/show/${movie.id}/${encodeURIComponent(movie.name)}`
+                        );
                       }
                     }}
                   />
