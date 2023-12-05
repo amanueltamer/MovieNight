@@ -154,24 +154,6 @@ p {
   border-radius: 6px;
 }
 
-.movieDetails__cardImg:hover .movieDetails__knownFor {
-  opacity: 1;
-}
-
-.movieDetails__knownFor {
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.movieDetails__knownFor > img {
-  position: absolute;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
 .movieDetails__cardImgBlank {
   width: 100%;
   padding-bottom: 150%;
