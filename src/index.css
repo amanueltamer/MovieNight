@@ -1,24 +1,23 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=Roboto:wght@100;300;400;500;700;900&display=swap");
 
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   background-color: black;
-  --mainTheme-color: #1E3E5C;
+  --mainTheme-color: #1e3e5c;
   /* --mainTheme-color: #83781B; */
   /* --mainTheme-color: #04724D; */
   /* --mainTheme-color: #A72608; */
-  --secondTheme-color: #1D2731;
-  --thirdTheme-color: #93A3B1;
-  --fourthTheme-color: #D8DBE2;
+  --secondTheme-color: #1d2731;
+  --thirdTheme-color: #93a3b1;
+  --fourthTheme-color: #d8dbe2;
 }
 
 body {
   /* scrollbar-width: none; Firefox */
   -ms-overflow-style: none; /* Internet Explorer and Microsoft Edge */
 }
-
 
 body::-webkit-scrollbar {
   display: none;
