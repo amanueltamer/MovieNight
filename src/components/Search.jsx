@@ -88,6 +88,8 @@ const Search = () => {
                                 )}`
                               );
                             }
+                          } else if (movie.profile_path) {
+                            navigate(`/person/${movie.id}`)
                           }
                         }}
                       />
@@ -99,42 +101,6 @@ const Search = () => {
                           </span>
                         </p>
                       )}
-                      {movie.profile_path &&
-                        movie.known_for &&
-                        movie.known_for.length > 0 && (
-                          <div className="search__knownFor">
-                            {movie.known_for.map((knownFor) => (
-                              <img
-                                key={knownFor.id}
-                                src={IMG_API + knownFor.poster_path}
-                                alt={knownFor.name}
-                                onClick={() => {
-                                  if (knownFor.title) {
-                                    navigate(
-                                      `/movie/${
-                                        knownFor.id
-                                      }/${encodeURIComponent(knownFor.title)}`
-                                    );
-                                  } else if (knownFor.name) {
-                                    navigate(
-                                      `/show/${
-                                        knownFor.id
-                                      }/${encodeURIComponent(knownFor.name)}`
-                                    );
-                                  }
-                                }}
-                              />
-                            ))}
-                            <p className="search__upcomingRating">
-                              <span
-                                className="search__upcomingRate"
-                                onClick={() => navigate(`/person/${movie.id}`)}
-                              >
-                                <h4>Click for Actor Details</h4>
-                              </span>
-                            </p>
-                          </div>
-                        )}
                     </div>
                   ) : (
                     <div className="movieDetails__cardImgBlank"></div>
