@@ -81,7 +81,7 @@ export default function Categories() {
   };
 
   const handleViewAllTopRatedMovies = () => {
-    navigate("/topRated");
+    navigate("/toprated");
   };
 
   useEffect(() => {
