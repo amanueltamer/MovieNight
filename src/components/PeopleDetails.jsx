@@ -10,7 +10,6 @@ export default function PeopleDetails() {
   const navigate = useNavigate();
   const IMG_API = "https://image.tmdb.org/t/p/original/";
   const API_KEY = "d6ed228d534be022d42faf1a2d1a9472";
-  const maxLength = 20;
   const swiperRef = useRef(null);
   const { id } = useParams();
   const [personDetails, setPersonDetails] = useState();
@@ -52,7 +51,7 @@ export default function PeopleDetails() {
           }
           return false;
         })
-        .slice(0, 12);
+        .slice(0, 36);
 
       setPersonMovieDetails(top12Movies);
     } catch (error) {
