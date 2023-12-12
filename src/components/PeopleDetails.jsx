@@ -51,7 +51,7 @@ export default function PeopleDetails() {
           }
           return false;
         })
-        .slice(0, 36);
+        .slice(0, 12);
 
       setPersonMovieDetails(top12Movies);
     } catch (error) {
