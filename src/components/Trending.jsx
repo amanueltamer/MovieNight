@@ -36,13 +36,15 @@ export default function Trending() {
 
     const { data } = await axios.get(apiUrl);
 
-    const dataExtract = data.results;
+    const dataSort = data.results.sort(
+      (a, b) => (b.vote_count - a.vote_count)
+    );
 
-    setData(dataExtract);
+    setData(dataSort);
     if (isSmallScreen) {
-      setSubset(dataExtract.slice(0, itemsPerPage));
+      setSubset(dataSort.slice(0, itemsPerPage));
     } else {
-      setSubset(dataExtract.slice(0, itemsPerPage));
+      setSubset(dataSort.slice(0, itemsPerPage));
     }
   }
 
@@ -64,6 +66,14 @@ export default function Trending() {
   const handleMediaTypeToggle = (newMediaType) => {
     if (newMediaType !== mediaType) {
       dispatch({ type: "SET_MEDIA_TYPE", payload: newMediaType });
+    }
+  };
+
+  const handleCardClick = (movie) => {
+    if (movie.title) {
+      navigate(`/movie/${movie.id}/${encodeURIComponent(movie.title)}`);
+    } else if (movie.name) {
+      navigate(`/show/${movie.id}/${encodeURIComponent(movie.name)}`);
     }
   };
 
@@ -123,21 +133,7 @@ export default function Trending() {
                         <img
                           src={IMG_API + movie.poster_path}
                           alt=""
-                          onClick={() => {
-                            if (movie.title) {
-                              navigate(
-                                `/movie/${movie.id}/${encodeURIComponent(
-                                  movie.title
-                                )}`
-                              );
-                            } else if (movie.name) {
-                              navigate(
-                                `/show/${movie.id}/${encodeURIComponent(
-                                  movie.name
-                                )}`
-                              );
-                            }
-                          }}
+                          onClick={() => handleCardClick(movie)}
                         />
                         <p className="trending__upcomingRating">
                           <Star />
