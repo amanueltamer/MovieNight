@@ -42,6 +42,14 @@ const Upcoming = () => {
     setSubset(newSubset);
   };
 
+  const handleCardClick = (movie) => {
+    if (movie.title) {
+      navigate(`/movie/${movie.id}/${encodeURIComponent(movie.title)}`);
+    } else if (movie.name) {
+      navigate(`/show/${movie.id}/${encodeURIComponent(movie.name)}`);
+    }
+  };
+
   return (
     <div className="upcoming">
       <div className="upcoming__mainContainer">
@@ -58,21 +66,7 @@ const Upcoming = () => {
                       <img
                         src={IMG_API + movie.poster_path}
                         alt={movie.name}
-                        onClick={() => {
-                          if (movie.title) {
-                            navigate(
-                              `/movie/${movie.id}/${encodeURIComponent(
-                                movie.title
-                              )}`
-                            );
-                          } else if (movie.name) {
-                            navigate(
-                              `/show/${movie.id}/${encodeURIComponent(
-                                movie.name
-                              )}`
-                            );
-                          }
-                        }}
+                        onClick={() => handleCardClick(movie)}
                       />
                       <p className="upcoming__Rating">
                         <Star />
