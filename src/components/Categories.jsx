@@ -90,6 +90,14 @@ export default function Categories() {
     getTopMovies();
   }, [isSmallScreen]);
 
+  const handleCardClick = (movie) => {
+    if (movie.title) {
+      navigate(`/movie/${movie.id}/${encodeURIComponent(movie.title)}`);
+    } else if (movie.name) {
+      navigate(`/show/${movie.id}/${encodeURIComponent(movie.name)}`);
+    }
+  };
+
   return (
     <div className="categories">
       <div className="container">
@@ -104,19 +112,7 @@ export default function Categories() {
                   <img
                     src={IMG_API + movie.poster_path}
                     alt={movie.title}
-                    onClick={() => {
-                      if (movie.title) {
-                        navigate(
-                          `/movie/${movie.id}/${encodeURIComponent(
-                            movie.title
-                          )}`
-                        );
-                      } else if (movie.name) {
-                        navigate(
-                          `/show/${movie.id}/${encodeURIComponent(movie.name)}`
-                        );
-                      }
-                    }}
+                    onClick={() => handleCardClick(movie)}
                   />
                   <p className="cat__upcomingRating">
                     <Star />
@@ -157,19 +153,7 @@ export default function Categories() {
                   <img
                     src={IMG_API + movie.poster_path}
                     alt={movie.title}
-                    onClick={() => {
-                      if (movie.title) {
-                        navigate(
-                          `/movie/${movie.id}/${encodeURIComponent(
-                            movie.title
-                          )}`
-                        );
-                      } else if (movie.name) {
-                        navigate(
-                          `/show/${movie.id}/${encodeURIComponent(movie.name)}`
-                        );
-                      }
-                    }}
+                    onClick={() => handleCardClick(movie)}
                   />
                   <p className="cat__upcomingRating">
                     <Star />
@@ -210,19 +194,7 @@ export default function Categories() {
                   <img
                     src={IMG_API + movie.poster_path}
                     alt={movie.title}
-                    onClick={() => {
-                      if (movie.title) {
-                        navigate(
-                          `/movie/${movie.id}/${encodeURIComponent(
-                            movie.title
-                          )}`
-                        );
-                      } else if (movie.name) {
-                        navigate(
-                          `/show/${movie.id}/${encodeURIComponent(movie.name)}`
-                        );
-                      }
-                    }}
+                    onClick={() => handleCardClick(movie)}
                   />
                   <p className="cat__upcomingRating">
                     <Star />
