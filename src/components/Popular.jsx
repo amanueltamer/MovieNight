@@ -42,6 +42,14 @@ const Popular = () => {
     setSubset(newSubset);
   };
 
+  const handleCardClick = (movie) => {
+    if (movie.title) {
+      navigate(`/movie/${movie.id}/${encodeURIComponent(movie.title)}`);
+    } else if (movie.name) {
+      navigate(`/show/${movie.id}/${encodeURIComponent(movie.name)}`);
+    }
+  };
+
   return (
     <div className="popular">
       <div className="popular__mainContainer">
@@ -58,21 +66,7 @@ const Popular = () => {
                       <img
                         src={IMG_API + movie.poster_path}
                         alt={movie.name}
-                        onClick={() => {
-                          if (movie.title) {
-                            navigate(
-                              `/movie/${movie.id}/${encodeURIComponent(
-                                movie.title
-                              )}`
-                            );
-                          } else if (movie.name) {
-                            navigate(
-                              `/show/${movie.id}/${encodeURIComponent(
-                                movie.name
-                              )}`
-                            );
-                          }
-                        }}
+                        onClick={() => handleCardClick(movie)}
                       />
                       <p className="popular__upcomingRating">
                         <Star />
