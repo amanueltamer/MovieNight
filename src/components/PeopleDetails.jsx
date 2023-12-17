@@ -111,6 +111,14 @@ export default function PeopleDetails() {
     return result;
   }
 
+  const handleCardClick = (movie) => {
+    if (movie.title) {
+      navigate(`/movie/${movie.id}/${encodeURIComponent(movie.title)}`);
+    } else if (movie.name) {
+      navigate(`/show/${movie.id}/${encodeURIComponent(movie.name)}`);
+    }
+  };
+
   return (
     <div className="people__details">
       {personMovieDetails ? (
@@ -186,21 +194,7 @@ export default function PeopleDetails() {
                           <img
                             src={IMG_API + movie.poster_path}
                             alt={movie.title || movie.name}
-                            onClick={() => {
-                              if (movie.title) {
-                                navigate(
-                                  `/movie/${movie.id}/${encodeURIComponent(
-                                    movie.title
-                                  )}`
-                                );
-                              } else if (movie.name) {
-                                navigate(
-                                  `/show/${movie.id}/${encodeURIComponent(
-                                    movie.name
-                                  )}`
-                                );
-                              }
-                            }}
+                            onClick={() => handleCardClick(movie)}
                           />
                         </div>
                       ) : (
