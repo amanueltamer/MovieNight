@@ -53,6 +53,14 @@ const Search = () => {
     setSubset(newSubset);
   };
 
+  const handleCardClick = (movie) => {
+    if (movie.title) {
+      navigate(`/movie/${movie.id}/${encodeURIComponent(movie.title)}`);
+    } else if (movie.name) {
+      navigate(`/show/${movie.id}/${encodeURIComponent(movie.name)}`);
+    }
+  };
+
   console.log(subset);
 
   return (
@@ -73,25 +81,7 @@ const Search = () => {
                           IMG_API + (movie.poster_path || movie.profile_path)
                         }
                         alt={movie.name}
-                        onClick={() => {
-                          if (!movie.profile_path) {
-                            if (movie.title) {
-                              navigate(
-                                `/movie/${movie.id}/${encodeURIComponent(
-                                  movie.title
-                                )}`
-                              );
-                            } else if (movie.name) {
-                              navigate(
-                                `/show/${movie.id}/${encodeURIComponent(
-                                  movie.name
-                                )}`
-                              );
-                            }
-                          } else if (movie.profile_path) {
-                            navigate(`/person/${movie.id}`);
-                          }
-                        }}
+                        onClick={() => handleCardClick(movie)}
                       />
                       {movie.poster_path && (
                         <p className="search__upcomingRating">
