@@ -47,16 +47,18 @@ export default function Discover() {
     try {
       const { data } = await axios.get(apiUrl);
 
-      const dataExtract = data.results;
+      const dataSort = data.results.sort(
+        (a, b) => (b.vote_count - a.vote_count)
+      );
 
-      if (dataExtract.length > 0) {
-        setData(dataExtract);
+      if (dataSort.length > 0) {
+        setData(dataSort);
         const totalPagesToShow = Math.min(data.total_pages, 500);
         setTotalPages(totalPagesToShow);
         if (isSmallScreen) {
-          setSubset(dataExtract.slice(0, itemsPerPage));
+          setSubset(dataSort.slice(0, itemsPerPage));
         } else {
-          setSubset(dataExtract.slice(0, itemsPerPage));
+          setSubset(dataSort.slice(0, itemsPerPage));
         }
       } else {
         console.log("No data available for this page.");
@@ -102,6 +104,14 @@ export default function Discover() {
     if (newMediaType !== mediaType) {
       dispatch({ type: "SET_MEDIA_TYPE", payload: newMediaType });
       setCurrentPage(0);
+    }
+  };
+
+  const handleCardClick = (movie) => {
+    if (movie.title) {
+      navigate(`/movie/${movie.id}/${encodeURIComponent(movie.title)}`);
+    } else if (movie.name) {
+      navigate(`/show/${movie.id}/${encodeURIComponent(movie.name)}`);
     }
   };
 
@@ -219,21 +229,7 @@ export default function Discover() {
                           <img
                             src={IMG_API + movie.poster_path}
                             alt=""
-                            onClick={() => {
-                              if (movie.title) {
-                                navigate(
-                                  `/movie/${movie.id}/${encodeURIComponent(
-                                    movie.title
-                                  )}`
-                                );
-                              } else if (movie.name) {
-                                navigate(
-                                  `/show/${movie.id}/${encodeURIComponent(
-                                    movie.name
-                                  )}`
-                                );
-                              }
-                            }}
+                            onClick={() => handleCardClick(movie)}
                           />
                           <p className="trending__upcomingRating">
                             <Star />
