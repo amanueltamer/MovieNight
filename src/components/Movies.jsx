@@ -56,6 +56,14 @@ export default function Movies() {
     },
   };
 
+  const handleCardClick = (movie) => {
+    if (movie.title) {
+      navigate(`/movie/${movie.id}/${encodeURIComponent(movie.title)}`);
+    } else if (movie.name) {
+      navigate(`/show/${movie.id}/${encodeURIComponent(movie.name)}`);
+    }
+  };
+
   return (
     <div className="movies">
       {movies && movies.length > 0 ? (
@@ -97,21 +105,7 @@ export default function Movies() {
                     </div>
                     <Button
                       className="movies__details"
-                      onClick={() => {
-                        if (movie.title) {
-                          navigate(
-                            `/movie/${movie.id}/${encodeURIComponent(
-                              movie.title
-                            )}`
-                          );
-                        } else if (movie.name) {
-                          navigate(
-                            `/show/${movie.id}/${encodeURIComponent(
-                              movie.name
-                            )}`
-                          );
-                        }
-                      }}
+                      onClick={() => handleCardClick(movie)}
                     >
                       View Details
                     </Button>
