@@ -2,7 +2,7 @@ import { useMediaQuery } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "../css/People.css";
 
 const People = () => {
@@ -11,6 +11,7 @@ const People = () => {
   const [subset, setSubset] = useState([]);
   const navigate = useNavigate();
   const isSmallScreen = useMediaQuery("(max-width: 2px)");
+  const { page } = useParams();
 
   const itemsPerPage = 20;
 
@@ -33,6 +34,11 @@ const People = () => {
   }
 
   useEffect(() => {
+    // Set currentPage to the page parameter from the URL
+    setCurrentPage(page ? parseInt(page, 10) - 1 : 0);
+  }, [page]);
+
+  useEffect(() => {
     getPeople(currentPage + 1);
   }, [currentPage, isSmallScreen]);
 
@@ -45,6 +51,9 @@ const People = () => {
     const newSubset = data.slice(newStartIndex, newEndIndex);
 
     setSubset(newSubset);
+
+    // Update the URL with the new page number
+    navigate(`/people/${selectedPage.selected + 1}`);
   };
 
   return (
