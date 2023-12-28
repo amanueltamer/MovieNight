@@ -24,22 +24,22 @@ export default function Header() {
   };
 
   const goTrending = () => {
-    navigate("/trending");
+    navigate("/trending/1");
   };
 
   const goPeople = () => {
-    navigate("/people");
+    navigate("/people/1");
   };
 
   const goDiscover = () => {
-    navigate("/discover");
+    navigate("/discover/1");
   };
 
   const handleSearch = () => {
     setDrawerOpen(false);
     if (searchValue !== "") {
       const query = searchValue;
-      navigate(`/search/${query}`);
+      navigate(`/search/${query}/1`);
     }
   };
 
