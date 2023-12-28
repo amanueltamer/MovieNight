@@ -4,7 +4,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "../css/Trending.css";
 
 export default function Trending() {
@@ -13,6 +13,7 @@ export default function Trending() {
   const [subset, setSubset] = useState([]);
   const navigate = useNavigate();
   const isSmallScreen = useMediaQuery("(max-width: 1184px)");
+  const { page } = useParams();
 
   const itemsPerPage = 20;
 
@@ -49,6 +50,11 @@ export default function Trending() {
   }
 
   useEffect(() => {
+    // Set currentPage to the page parameter from the URL
+    setCurrentPage(page ? parseInt(page, 10) - 1 : 0);
+  }, [page]);
+
+  useEffect(() => {
     getTrending(currentPage + 1);
   }, [currentPage, mediaType, isSmallScreen]);
 
@@ -61,6 +67,9 @@ export default function Trending() {
     const newSubset = data.slice(newStartIndex, newEndIndex);
 
     setSubset(newSubset);
+
+    // Update the URL with the new page number
+    navigate(`/trending/${selectedPage.selected + 1}`);
   };
 
   const handleMediaTypeToggle = (newMediaType) => {
@@ -105,6 +114,7 @@ export default function Trending() {
                       ? "selectedButton"
                       : "customToggleButton"
                   }
+                  onClick={() => navigate(`/trending/1`)}
                 >
                   Movies
                 </ToggleButton>
@@ -119,6 +129,7 @@ export default function Trending() {
                       ? "selectedButton"
                       : "customToggleButton"
                   }
+                  onClick={() => navigate(`/trending/1`)}
                 >
                   TV Shows
                 </ToggleButton>
