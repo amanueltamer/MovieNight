@@ -73,15 +73,15 @@ export default function Categories() {
   }
 
   const handleViewAllUpcomingMovies = () => {
-    navigate("/upcoming");
+    navigate("/upcoming/1");
   };
 
   const handleViewAllPopularMovies = () => {
-    navigate("/popular");
+    navigate("/popular/1");
   };
 
   const handleViewAllTopRatedMovies = () => {
-    navigate("/toprated");
+    navigate("/toprated/1");
   };
 
   useEffect(() => {
