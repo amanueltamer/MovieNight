@@ -16,15 +16,15 @@ function App() {
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />}></Route>
-          <Route path="/trending" element={<TrendingPage />}></Route>
-          <Route path="/discover" element={<DiscoverPage />}></Route>
-          <Route path="/people" element={<PeoplePage />}></Route>
-          <Route path="/upcoming" element={<Upcomingpage />}></Route>
-          <Route path="/toprated" element={<TopRatedPage />}></Route>
-          <Route path="/popular" element={<PopularPage />}></Route>
+          <Route path="/trending/:page" element={<TrendingPage />}></Route>
+          <Route path="/discover/:page" element={<DiscoverPage />}></Route>
+          <Route path="/people/:page" element={<PeoplePage />}></Route>
+          <Route path="/upcoming/:page" element={<Upcomingpage />}></Route>
+          <Route path="/toprated/:page" element={<TopRatedPage />}></Route>
+          <Route path="/popular/:page" element={<PopularPage />}></Route>
           <Route path="/:type/:id/:title" element={<MovieDetailsPage />} />
           <Route path="/person/:id?" element={<PeopleDetailsPage />} />
-          <Route path="/search/:query?" element={<SearchPage />} />
+          <Route path="/search/:query?/:page" element={<SearchPage />} />
         </Routes>
       </div>
     </Router>
