@@ -2,7 +2,7 @@ import { Star } from "@mui/icons-material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "../css/TopRated.css";
 
 const TopRated = () => {
@@ -11,6 +11,7 @@ const TopRated = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [subset, setSubset] = useState([]);
   const navigate = useNavigate();
+  const { page } = useParams();
 
   const itemsPerPage = 20;
 
@@ -30,6 +31,11 @@ const TopRated = () => {
   }
 
   useEffect(() => {
+    // Set currentPage to the page parameter from the URL
+    setCurrentPage(page ? parseInt(page, 10) - 1 : 0);
+  }, [page]);
+
+  useEffect(() => {
     getTopRated(currentPage + 1);
   }, [currentPage]);
 
@@ -42,6 +48,9 @@ const TopRated = () => {
     const newSubset = data.slice(newStartIndex, newEndIndex);
 
     setSubset(newSubset);
+
+    // Update the URL with the new page number
+    navigate(`/toprated/${selectedPage.selected + 1}`);
   };
 
   const handleCardClick = (movie) => {
