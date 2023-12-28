@@ -10,7 +10,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function Discover() {
   const [data, setData] = useState([]);
@@ -21,6 +21,7 @@ export default function Discover() {
   const [selectedTvValue, setSelectedTvValue] = useState("10759");
   const navigate = useNavigate();
   const isSmallScreen = useMediaQuery("(max-width: 1184px)");
+  const { page } = useParams();
 
   const itemsPerPage = 20;
 
@@ -47,9 +48,7 @@ export default function Discover() {
     try {
       const { data } = await axios.get(apiUrl);
 
-      const dataSort = data.results.sort(
-        (a, b) => (b.vote_count - a.vote_count)
-      );
+      const dataSort = data.results.sort((a, b) => b.vote_count - a.vote_count);
 
       if (dataSort.length > 0) {
         setData(dataSort);
@@ -67,6 +66,11 @@ export default function Discover() {
       console.error("Error fetching discover data:", error);
     }
   }
+
+  useEffect(() => {
+    // Set currentPage to the page parameter from the URL
+    setCurrentPage(page ? parseInt(page, 10) - 1 : 0);
+  }, [page]);
 
   useEffect(() => {
     getDiscover(currentPage + 1);
@@ -88,6 +92,9 @@ export default function Discover() {
     const newSubset = data.slice(newStartIndex, newEndIndex);
 
     setSubset(newSubset);
+
+    // Update the URL with the new page number
+    navigate(`/discover/${selectedPage.selected + 1}`);
   };
 
   const handleSelectChange = (event) => {
@@ -144,6 +151,7 @@ export default function Discover() {
                         ? "selectedButton"
                         : "customToggleButton"
                     }
+                    onClick={() => navigate(`/discover/1`)}
                   >
                     Movies
                   </ToggleButton>
@@ -158,6 +166,7 @@ export default function Discover() {
                         ? "selectedButton"
                         : "customToggleButton"
                     }
+                    onClick={() => navigate(`/discover/1`)}
                   >
                     TV Shows
                   </ToggleButton>
