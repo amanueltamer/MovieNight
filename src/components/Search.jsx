@@ -10,7 +10,7 @@ const Search = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [subset, setSubset] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
-  const { query } = useParams();
+  const { query, page } = useParams();
   const navigate = useNavigate();
 
   const itemsPerPage = 20;
@@ -34,13 +34,18 @@ const Search = () => {
   }
 
   useEffect(() => {
-    setCurrentPage(0);
+    // Set currentPage to the page parameter from the URL
+    setCurrentPage(page ? parseInt(page, 10) - 1 : 0);
+  }, [page]);
+
+  useEffect(() => {
     getSearch(1);
   }, [query]);
-
+  
   useEffect(() => {
     getSearch(currentPage + 1);
   }, [currentPage]);
+  
 
   const handlePageChange = (selectedPage) => {
     setCurrentPage(selectedPage.selected);
@@ -51,12 +56,17 @@ const Search = () => {
     const newSubset = data.slice(newStartIndex, newEndIndex);
 
     setSubset(newSubset);
+
+    // Update the URL with the new page number
+    navigate(`/search/${query}/${selectedPage.selected + 1}`);
   };
 
   const handleCardClick = (movie) => {
     if (movie.title) {
       navigate(`/movie/${movie.id}/${encodeURIComponent(movie.title)}`);
-    } else if (movie.name) {
+    } else if(movie.media_type === "person") {
+      navigate(`/person/${movie.id}`);
+    } else if(movie.name) {
       navigate(`/show/${movie.id}/${encodeURIComponent(movie.name)}`);
     }
   };
