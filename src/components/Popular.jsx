@@ -2,7 +2,7 @@ import { Star } from "@mui/icons-material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "../css/Popular.css";
 
 const Popular = () => {
@@ -10,6 +10,7 @@ const Popular = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [subset, setSubset] = useState([]);
   const navigate = useNavigate();
+  const { page } = useParams();
 
   const itemsPerPage = 20;
 
@@ -28,6 +29,11 @@ const Popular = () => {
   }
 
   useEffect(() => {
+    // Set currentPage to the page parameter from the URL
+    setCurrentPage(page ? parseInt(page, 10) - 1 : 0);
+  }, [page]);
+
+  useEffect(() => {
     getPopular(currentPage + 1);
   }, [currentPage]);
 
@@ -40,6 +46,9 @@ const Popular = () => {
     const newSubset = data.slice(newStartIndex, newEndIndex);
 
     setSubset(newSubset);
+
+    // Update the URL with the new page number
+    navigate(`/popular/${selectedPage.selected + 1}`);
   };
 
   const handleCardClick = (movie) => {
