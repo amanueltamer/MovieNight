@@ -97,7 +97,7 @@ const Search = () => {
                         <p className="search__upcomingRating">
                           <Star />
                           <span className="search__upcomingRate">
-                            {movie.vote_average.toFixed(1)}
+                            {movie?.vote_average?.toFixed(1)}
                           </span>
                         </p>
                       )}
