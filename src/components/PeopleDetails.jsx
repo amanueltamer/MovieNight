@@ -51,7 +51,7 @@ export default function PeopleDetails() {
           }
           return false;
         })
-        .slice(0, 12);
+        .slice(0, 24);
 
       setPersonMovieDetails(top12Movies);
     } catch (error) {
@@ -60,6 +60,7 @@ export default function PeopleDetails() {
   }
 
   console.log(personMovieDetails);
+  console.log(personDetails);
 
   useEffect(() => {
     getPeopleDetails();
@@ -95,6 +96,9 @@ export default function PeopleDetails() {
 
     // Use a regular expression to split the text into sentences
     const sentences = text.match(/[^.!?]+[.!?]+/g);
+    if (!sentences) {
+        return ""; // Or handle the case when there are no sentences
+    }
 
     // Take sentences until the character limit is reached
     let characterCount = 0;
@@ -109,7 +113,7 @@ export default function PeopleDetails() {
     }
 
     return result;
-  }
+}
 
   const handleCardClick = (movie) => {
     if (movie.title) {
