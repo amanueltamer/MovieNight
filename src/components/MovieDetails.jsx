@@ -98,26 +98,29 @@ export default function MovieDetails() {
       ? (movieDetails && movieDetails.production_companies) || []
       : (tvDetails && tvDetails.production_companies) || [];
 
-  function limitText(text, limit) {
-    if (!text) return "";
-
-    // Use a regular expression to split the text into sentences
-    const sentences = text.match(/[^.!?]+[.!?]+/g);
-
-    // Take sentences until the character limit is reached
-    let characterCount = 0;
-    let result = "";
-    for (const sentence of sentences) {
-      if (characterCount + sentence.length <= limit) {
-        result += sentence;
-        characterCount += sentence.length;
-      } else {
-        break;
-      }
+      function limitText(text, limit) {
+        if (!text) return "";
+    
+        // Use a regular expression to split the text into sentences
+        const sentences = text.match(/[^.!?]+[.!?]+/g);
+        if (!sentences) {
+            return ""; // Or handle the case when there are no sentences
+        }
+    
+        // Take sentences until the character limit is reached
+        let characterCount = 0;
+        let result = "";
+        for (const sentence of sentences) {
+          if (characterCount + sentence.length <= limit) {
+            result += sentence;
+            characterCount += sentence.length;
+          } else {
+            break;
+          }
+        }
+    
+        return result;
     }
-
-    return result;
-  }
 
   console.log(movieDetails);
   console.log(titleSet);
