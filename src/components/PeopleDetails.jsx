@@ -5,6 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore, { Navigation, Autoplay, EffectFade } from "swiper/core";
 import "swiper/swiper-bundle.min.css";
 import { useMediaQuery } from "@mui/material";
+import { Star } from "@mui/icons-material";
 
 export default function PeopleDetails() {
   const navigate = useNavigate();
@@ -200,6 +201,12 @@ export default function PeopleDetails() {
                             alt={movie.title || movie.name}
                             onClick={() => handleCardClick(movie)}
                           />
+                          <p className="trending__upcomingRating">
+                            <Star />
+                            <span className="trending__upcomingRate">
+                              {movie.vote_average.toFixed(1)}
+                            </span>
+                          </p>
                         </div>
                       ) : (
                         <div className="movieDetails__cardImgBlank"></div>
